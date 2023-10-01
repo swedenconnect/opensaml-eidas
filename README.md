@@ -1,7 +1,5 @@
 ![Logo](docs/img/sweden-connect-logo.png)
 
-------
-
 # opensaml-eidas
 
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0) [![Maven Central](https://maven-badges.herokuapp.com/maven-central/se.swedenconnect.opensaml/opensaml-eidas/badge.svg)](https://maven-badges.herokuapp.com/maven-central/se.swedenconnect.opensaml/opensaml-eidas) 
@@ -52,13 +50,13 @@ The eidas-opensaml artifacts are published to Maven central and a dependency to 
 
 The [eIDAS SAML Message Format v1.2](https://github.com/litsec/eidas-opensaml/files/2219283/eIDAS.Message.Format_v1.2_final.docx) specification describes how a SAML `AuthnRequest` message should be put together to comply to the eIDAS specifications. 
 
-[CreateAuthnRequestExample.java](https://github.com/swedenconnect/opensaml-eidas/blob/main/src/test/java/se/litsec/eidas/opensaml/examples/CreateAuthnRequestExample.java) illustrates how you could create an authentication request message using the opensaml-eidas library.
+[CreateAuthnRequestExample.java](https://github.com/swedenconnect/opensaml-eidas/blob/main/src/test/java/se/swedenconnect/opensaml/eidas/examples/CreateAuthnRequestExample.java) illustrates how you could create an authentication request message using the opensaml-eidas library.
 
 #### Parsing an Assertion
 
 An assertion issued from an eIDAS service will contain the attributes defined in [eIDAS SAML Attribute Profile](https://github.com/litsec/eidas-opensaml/files/3236266/eIDAS.SAML.Attribute.Profile.v1.2-FINAL.pdf).
 
-[ParseAssertionExample.java](https://github.com/litsec/eidas-opensaml/blob/master/opensaml4/src/test/java/se/litsec/eidas/opensaml/examples/ParseAssertionExample.java) shows how to parse an Assertion and get hold of all attribute values.
+[ParseAssertionExample.java](https://github.com/swedenconnect/opensaml-eidas/blob/main/src/test/java/se/swedenconnect/opensaml/eidas/examples/ParseAssertionExample.java) shows how to parse an Assertion and get hold of all attribute values.
 
 ### Resources
 
