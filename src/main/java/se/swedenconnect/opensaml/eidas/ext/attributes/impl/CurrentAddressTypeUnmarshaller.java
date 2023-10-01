@@ -17,6 +17,7 @@ package se.swedenconnect.opensaml.eidas.ext.attributes.impl;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -95,7 +96,7 @@ public class CurrentAddressTypeUnmarshaller extends CurrentAddressStructuredType
     //
     try {
       final byte[] bytes = Base64Support.decode(textContent);
-      final String addressElements = new String(bytes);
+      final String addressElements = new String(bytes, StandardCharsets.UTF_8);
 
       // Then build a fake XML document holding the contents in element form.
       //
