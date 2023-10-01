@@ -1,0 +1,12 @@
+se.swedenconnect.opensaml.eidas
+se.swedenconnect.opensaml.eidas.common
+se.swedenconnect.opensaml.eidas.config
+se.swedenconnect.opensaml.eidas.ext
+se.swedenconnect.opensaml.eidas.ext.attributes
+se.swedenconnect.opensaml.eidas.ext.attributes.address
+se.swedenconnect.opensaml.eidas.ext.attributes.address.impl
+se.swedenconnect.opensaml.eidas.ext.attributes.impl
+se.swedenconnect.opensaml.eidas.ext.impl
+se.swedenconnect.opensaml.eidas.metadata
+se.swedenconnect.opensaml.eidas.metadata.impl
+se.swedenconnect.opensaml.eidas.xmlsec
