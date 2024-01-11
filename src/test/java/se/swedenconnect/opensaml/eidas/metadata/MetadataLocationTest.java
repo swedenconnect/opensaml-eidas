@@ -1,5 +1,5 @@
 /*
- * Copyright 2016-2023 Sweden Connect
+ * Copyright 2016-2024 Sweden Connect
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -89,8 +89,8 @@ public class MetadataLocationTest extends OpenSAMLTestBase {
     Assertions.assertEquals(mdl.getEndpoints().get(1).getEndpointType(), mdl2.getEndpoints().get(1).getEndpointType());
     Assertions.assertEquals(mdl.getEndpoints().get(1).getEntityID(), mdl2.getEndpoints().get(1).getEntityID());
 
-    Assertions.assertEquals(mdl.getKeyInfo().getX509Datas().get(0).getX509Certificates().get(0).getValue(),
-        mdl2.getKeyInfo().getX509Datas().get(0).getX509Certificates().get(0).getValue());
+    Assertions.assertEquals(mdl.getKeyInfos().get(0).getX509Datas().get(0).getX509Certificates().get(0).getValue(),
+        mdl2.getKeyInfos().get(0).getX509Datas().get(0).getX509Certificates().get(0).getValue());
 
     Assertions.assertEquals(mdl.getLocation(), mdl2.getLocation());
   }
@@ -123,7 +123,7 @@ public class MetadataLocationTest extends OpenSAMLTestBase {
       final KeyInfo keyInfo = (KeyInfo) XMLObjectSupport.buildXMLObject(KeyInfo.DEFAULT_ELEMENT_NAME);
       keyInfo.getX509Datas().add(x509Data);
 
-      mdl.setKeyInfo(keyInfo);
+      mdl.getKeyInfos().add(keyInfo);
     }
     mdl.setLocation("https://eid.litsec.se/eidas/metadatalist");
 
@@ -131,12 +131,12 @@ public class MetadataLocationTest extends OpenSAMLTestBase {
   }
 
   /**
-   * Tests the setX509Certificate method.
+   * Tests the addX509Certificate method.
    *
    * @throws Exception
    */
   @Test
-  public void testSetX509Certificate() throws Exception {
+  public void testAddX509Certificate() throws Exception {
 
     // Assign one KeyInfo with brute-force
     final MetadataLocation mdl =
@@ -153,17 +153,17 @@ public class MetadataLocationTest extends OpenSAMLTestBase {
     final KeyInfo keyInfo = (KeyInfo) XMLObjectSupport.buildXMLObject(KeyInfo.DEFAULT_ELEMENT_NAME);
     keyInfo.getX509Datas().add(x509Data);
 
-    mdl.setKeyInfo(keyInfo);
+    mdl.getKeyInfos().add(keyInfo);
 
-    // And the other one using setX509Certificate
+    // And the other one using addX509Certificate
     final MetadataLocation mdl2 =
         (MetadataLocation) XMLObjectSupport.buildXMLObject(MetadataLocation.DEFAULT_ELEMENT_NAME);
-    mdl2.setX509Certificate(CERTIFICATE);
+    mdl2.addX509Certificate(CERTIFICATE);
 
     // Assert that the KeyInfo elements are the same ...
     //
-    Assertions.assertEquals(mdl.getKeyInfo().getX509Datas().get(0).getX509Certificates().get(0).getValue(),
-        mdl2.getKeyInfo().getX509Datas().get(0).getX509Certificates().get(0).getValue());
+    Assertions.assertEquals(mdl.getKeyInfos().get(0).getX509Datas().get(0).getX509Certificates().get(0).getValue(),
+        mdl2.getKeyInfos().get(0).getX509Datas().get(0).getX509Certificates().get(0).getValue());
   }
 
 }

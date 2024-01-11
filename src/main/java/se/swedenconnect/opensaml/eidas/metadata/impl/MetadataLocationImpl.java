@@ -1,5 +1,5 @@
 /*
- * Copyright 2016-2023 Sweden Connect
+ * Copyright 2016-2024 Sweden Connect
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -49,8 +49,8 @@ public class MetadataLocationImpl extends AbstractXMLObject implements MetadataL
   /** Endpoint children. */
   private final XMLObjectChildrenList<Endpoint> endpoints;
 
-  /** Key info (certificate). */
-  private KeyInfo keyInfo;
+  /** Key infos (certificates). */
+  private final XMLObjectChildrenList<KeyInfo> keyInfos;
 
   /** The location attribute. */
   private String location;
@@ -70,6 +70,7 @@ public class MetadataLocationImpl extends AbstractXMLObject implements MetadataL
   public MetadataLocationImpl(final String namespaceURI, final String elementLocalName, final String namespacePrefix) {
     super(namespaceURI, elementLocalName, namespacePrefix);
     this.endpoints = new XMLObjectChildrenList<>(this);
+    this.keyInfos = new XMLObjectChildrenList<>(this);
     this.unknownAttributes = new AttributeMap(this);
   }
 
@@ -78,9 +79,7 @@ public class MetadataLocationImpl extends AbstractXMLObject implements MetadataL
   public List<XMLObject> getOrderedChildren() {
     final ArrayList<XMLObject> children = new ArrayList<>();
     children.addAll(this.endpoints);
-    if (this.keyInfo != null) {
-      children.add(this.keyInfo);
-    }
+    children.addAll(this.keyInfos);
     return Collections.unmodifiableList(children);
   }
 
@@ -92,19 +91,13 @@ public class MetadataLocationImpl extends AbstractXMLObject implements MetadataL
 
   /** {@inheritDoc} */
   @Override
-  public KeyInfo getKeyInfo() {
-    return this.keyInfo;
+  public List<KeyInfo> getKeyInfos() {
+    return this.keyInfos;
   }
 
   /** {@inheritDoc} */
   @Override
-  public void setKeyInfo(final KeyInfo keyInfo) {
-    this.keyInfo = this.prepareForAssignment(this.keyInfo, keyInfo);
-  }
-
-  /** {@inheritDoc} */
-  @Override
-  public void setX509Certificate(final X509Certificate certificate) {
+  public void addX509Certificate(final X509Certificate certificate) {
 
     String encoding;
     try {
@@ -122,7 +115,7 @@ public class MetadataLocationImpl extends AbstractXMLObject implements MetadataL
     final KeyInfo keyInfo = new KeyInfoBuilder().buildObject();
     keyInfo.getX509Datas().add(x509data);
 
-    this.setKeyInfo(keyInfo);
+    this.getKeyInfos().add(keyInfo);
   }
 
   /** {@inheritDoc} */

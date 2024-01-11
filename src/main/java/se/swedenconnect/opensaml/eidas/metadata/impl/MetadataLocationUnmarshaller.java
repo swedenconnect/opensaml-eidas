@@ -1,5 +1,5 @@
 /*
- * Copyright 2016-2023 Sweden Connect
+ * Copyright 2016-2024 Sweden Connect
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -42,7 +42,7 @@ public class MetadataLocationUnmarshaller extends AbstractSAMLObjectUnmarshaller
       mdl.getEndpoints().add((Endpoint) childSAMLObject);
     }
     else if (childSAMLObject instanceof KeyInfo) {
-      mdl.setKeyInfo((KeyInfo) childSAMLObject);
+      mdl.getKeyInfos().add((KeyInfo) childSAMLObject);
     }
     else {
       super.processChildElement(parentSAMLObject, childSAMLObject);
