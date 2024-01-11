@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 Sweden Connect
+ * Copyright 2023-2024 Sweden Connect
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,7 +24,7 @@ public final class LibraryVersion {
 
   private static final int MAJOR = 3;
   private static final int MINOR = 0;
-  private static final int PATCH = 0;
+  private static final int PATCH = 1;
 
   /**
    * Global serialization value for library classes.

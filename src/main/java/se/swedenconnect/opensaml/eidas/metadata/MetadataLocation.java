@@ -1,5 +1,5 @@
 /*
- * Copyright 2016-2023 Sweden Connect
+ * Copyright 2016-2024 Sweden Connect
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -42,7 +42,7 @@ import se.swedenconnect.opensaml.eidas.common.EidasConstants;
  *          </xs:documentation>
  *        </xs:annotation>
  *      </xs:element>
- *      <xs:element ref="ds:KeyInfo" minOccurs="0">
+ *      <xs:element ref="ds:KeyInfo" minOccurs="0" maxOccurs="unbounded">
  *        <xs:annotation>
  *          <xs:documentation>
  *            Key material (usually a certificate) that should be used to verify the signature
@@ -94,16 +94,32 @@ public interface MetadataLocation extends SAMLObject, AttributeExtensibleXMLObje
    * Returns the key info element to be used when verifying downloaded metadata.
    *
    * @return key info element, or {@code null}
+   * @deprecated Use {@link #getKeyInfos()} instead
    */
-  KeyInfo getKeyInfo();
+  @Deprecated(since = "3.0.1", forRemoval = true)
+  default KeyInfo getKeyInfo() {
+    return this.getKeyInfos().size() > 0 ? this.getKeyInfos().get(0) : null;
+  }
+
+  /**
+   * Returns a list of the key info elements that may be used when verifying downloaded metadata.
+   *
+   * @return a (possibly empty) list of key info elements
+   */
+  List<KeyInfo> getKeyInfos();
 
   /**
    * Assigns the key info element to be used when verifying downloaded metadata.
    *
    * @param keyInfo key info element
    * @see #setX509Certificate(X509Certificate)
+   * @deprecated Use {@link #getKeyInfos()} instead and add the element to the live list
    */
-  void setKeyInfo(final KeyInfo keyInfo);
+  @Deprecated(since = "3.0.1", forRemoval = true)
+  default void setKeyInfo(final KeyInfo keyInfo) {
+    this.getKeyInfos().clear();
+    this.getKeyInfos().add(keyInfo);
+  }
 
   /**
    * Utility method that creates a {@link KeyInfo} object and assigns the supplied certificate to it before invoking
@@ -111,7 +127,19 @@ public interface MetadataLocation extends SAMLObject, AttributeExtensibleXMLObje
    *
    * @param certificate the X.509 certificate to assign to a key info
    */
-  void setX509Certificate(final X509Certificate certificate);
+  @Deprecated(since = "3.0.1", forRemoval = true)
+  default void setX509Certificate(final X509Certificate certificate) {
+    this.getKeyInfos().clear();
+    this.addX509Certificate(certificate);
+  }
+
+  /**
+   * Utility method that creates a {@link KeyInfo} object and assigns the supplied certificate to it before adding
+   * it to {@link #getKeyInfos()}.
+   *
+   * @param certificate certificate the X.509 certificate to assign to a key info
+   */
+  void addX509Certificate(final X509Certificate certificate);
 
   /**
    * Returns the location attribute, i.e., the URL from where the metadata endpoint(s) can be obtained.

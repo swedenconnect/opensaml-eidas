@@ -7,7 +7,7 @@
   <groupId>se.swedenconnect.opensaml</groupId>
   <artifactId>opensaml-eidas</artifactId>
   <packaging>jar</packaging>
-  <version>3.0.0</version>
+  <version>3.0.1-SNAPSHOT</version>
 
   <name>Sweden Connect :: eIDAS :: OpenSAML 5.X extensions</name>
   <description>OpenSAML 5.X extension library for the eIDAS Framework</description>
@@ -94,7 +94,7 @@
       <dependency>
         <groupId>org.apache.httpcomponents.core5</groupId>
         <artifactId>httpcore5</artifactId>
-        <version>5.2.2</version>
+        <version>5.2.4</version>
       </dependency>
 
       <dependency>
