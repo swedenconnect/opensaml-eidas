@@ -7,7 +7,7 @@
   <groupId>se.swedenconnect.opensaml</groupId>
   <artifactId>opensaml-eidas</artifactId>
   <packaging>jar</packaging>
-  <version>3.0.1-SNAPSHOT</version>
+  <version>3.0.1</version>
 
   <name>Sweden Connect :: eIDAS :: OpenSAML 5.X extensions</name>
   <description>OpenSAML 5.X extension library for the eIDAS Framework</description>
@@ -210,8 +210,10 @@
           <doctitle>eIDAS extension for OpenSAML 5.x - ${project.version}</doctitle>
           <windowtitle>eIDAS extension for OpenSAML 5.x - ${project.version}</windowtitle>
           <links>
+            <!--
             <link>https://build.shibboleth.net/nexus/content/sites/site/java-opensaml/${opensaml.version}/apidocs/</link>
             <link>https://build.shibboleth.net/nexus/content/sites/site/java-shib-shared/${shib.support.version}/apidocs/</link>
+            -->
             <link>https://docs.swedenconnect.se/opensaml-security-ext/javadoc/latest/</link>
           </links>
           <detectJavaApiLink>true</detectJavaApiLink>
