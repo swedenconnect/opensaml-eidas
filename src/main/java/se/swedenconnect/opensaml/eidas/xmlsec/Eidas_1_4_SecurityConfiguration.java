@@ -15,10 +15,6 @@
  */
 package se.swedenconnect.opensaml.eidas.xmlsec;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
 import org.opensaml.saml.security.SAMLMetadataKeyAgreementEncryptionConfiguration;
 import org.opensaml.xmlsec.AlgorithmPolicyConfiguration.Precedence;
 import org.opensaml.xmlsec.DecryptionConfiguration;
@@ -29,13 +25,15 @@ import org.opensaml.xmlsec.config.impl.DefaultSecurityConfigurationBootstrap;
 import org.opensaml.xmlsec.encryption.support.EncryptionConstants;
 import org.opensaml.xmlsec.encryption.support.RSAOAEPParameters;
 import org.opensaml.xmlsec.impl.BasicDecryptionConfiguration;
-import org.opensaml.xmlsec.impl.BasicEncryptionConfiguration;
 import org.opensaml.xmlsec.impl.BasicSignatureSigningConfiguration;
 import org.opensaml.xmlsec.impl.BasicSignatureValidationConfiguration;
 import org.opensaml.xmlsec.signature.support.SignatureConstants;
-
 import se.swedenconnect.opensaml.xmlsec.config.AbstractSecurityConfiguration;
 import se.swedenconnect.opensaml.xmlsec.config.EncryptionConfigurationProfile;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * A security configuration for OpenSAML according to version 1.2 of "eIDAS - Cryptographic requirements for the
@@ -55,7 +53,7 @@ import se.swedenconnect.opensaml.xmlsec.config.EncryptionConfigurationProfile;
  *
  * @author Martin Lindström
  */
-public class EidasSecurityConfiguration extends AbstractSecurityConfiguration {
+public class Eidas_1_4_SecurityConfiguration extends AbstractSecurityConfiguration {
 
   /** {@inheritDoc} */
   @Override
@@ -65,7 +63,7 @@ public class EidasSecurityConfiguration extends AbstractSecurityConfiguration {
 
   /**
    * Creates an encryption configuration for eIDAS according to section 3.2.1 and 3.2.2 of "eIDAS - Cryptographic
-   * requirements for the Interoperability Framework version 1.3 and earlier".
+   * requirements for the Interoperability Framework version 1.4".
    */
   @Override
   protected EncryptionConfiguration createDefaultEncryptionConfiguration() {
@@ -78,7 +76,6 @@ public class EidasSecurityConfiguration extends AbstractSecurityConfiguration {
       ))
       .keyWrapEncryptionAlgorithms(List.of(
         EncryptionConstants.ALGO_ID_KEYTRANSPORT_RSAOAEP11,
-        EncryptionConstants.ALGO_ID_KEYTRANSPORT_RSAOAEP,
         EncryptionConstants.ALGO_ID_KEYWRAP_AES256,
         EncryptionConstants.ALGO_ID_KEYWRAP_AES128,
         EncryptionConstants.ALGO_ID_KEYWRAP_AES192
@@ -93,7 +90,8 @@ public class EidasSecurityConfiguration extends AbstractSecurityConfiguration {
         EncryptionConstants.ALGO_ID_KEYTRANSPORT_RSA15,
         EncryptionConstants.ALGO_ID_BLOCKCIPHER_AES128,
         EncryptionConstants.ALGO_ID_BLOCKCIPHER_AES192,
-        EncryptionConstants.ALGO_ID_BLOCKCIPHER_AES256
+        EncryptionConstants.ALGO_ID_BLOCKCIPHER_AES256,
+        EncryptionConstants.ALGO_ID_KEYTRANSPORT_RSAOAEP
       ))
       .build();
   }

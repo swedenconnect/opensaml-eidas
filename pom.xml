@@ -7,7 +7,7 @@
   <groupId>se.swedenconnect.opensaml</groupId>
   <artifactId>opensaml-eidas</artifactId>
   <packaging>jar</packaging>
-  <version>3.0.1</version>
+  <version>3.0.2-SNAPSHOT</version>
 
   <name>Sweden Connect :: eIDAS :: OpenSAML 5.X extensions</name>
   <description>OpenSAML 5.X extension library for the eIDAS Framework</description>
@@ -50,6 +50,7 @@
     <junit.version>5.10.0</junit.version>
     <slf4j.version>2.0.9</slf4j.version>
     <jackson.version>2.15.2</jackson.version>
+    <bouncycastle.version>1.78</bouncycastle.version>
   </properties>
 
   <repositories>
@@ -109,6 +110,12 @@
         <version>${jackson.version}</version>
       </dependency>
 
+      <dependency>
+        <groupId>org.bouncycastle</groupId>
+        <artifactId>bcprov-jdk18on</artifactId>
+        <version>${bouncycastle.version}</version>
+      </dependency>
+
     </dependencies>
   </dependencyManagement>
 
@@ -123,7 +130,7 @@
     <dependency>
       <groupId>se.swedenconnect.opensaml</groupId>
       <artifactId>opensaml-security-ext</artifactId>
-      <version>4.0.0</version>
+      <version>4.0.2-SNAPSHOT</version>
     </dependency>
 
     <!-- For testing -->
