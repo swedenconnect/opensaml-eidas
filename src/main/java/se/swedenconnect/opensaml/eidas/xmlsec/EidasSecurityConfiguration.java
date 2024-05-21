@@ -1,5 +1,5 @@
 /*
- * Copyright 2016-2023 Sweden Connect
+ * Copyright 2016-2024 Sweden Connect
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,7 +19,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import org.opensaml.saml.security.SAMLMetadataKeyAgreementEncryptionConfiguration;
 import org.opensaml.xmlsec.AlgorithmPolicyConfiguration.Precedence;
 import org.opensaml.xmlsec.DecryptionConfiguration;
 import org.opensaml.xmlsec.EncryptionConfiguration;
@@ -35,11 +34,11 @@ import org.opensaml.xmlsec.impl.BasicSignatureValidationConfiguration;
 import org.opensaml.xmlsec.signature.support.SignatureConstants;
 
 import se.swedenconnect.opensaml.xmlsec.config.AbstractSecurityConfiguration;
-import se.swedenconnect.opensaml.xmlsec.config.EncryptionConfigurationProfile;
+import se.swedenconnect.opensaml.xmlsec.config.ExtendedDefaultSecurityConfigurationBootstrap;
 
 /**
- * A security configuration for OpenSAML according to version 1.2 of "eIDAS - Cryptographic requirements for the
- * Interoperability Framework".
+ * A security configuration for OpenSAML according to version 1.3 of "eIDAS - Cryptographic requirements for the
+ * Interoperability Framework" (and earlier versions).
  *
  * <p>
  * Note: The people behind the eIDAS crypto requirements SHOULD have looked at what is available in major code
@@ -70,32 +69,33 @@ public class EidasSecurityConfiguration extends AbstractSecurityConfiguration {
   @Override
   protected EncryptionConfiguration createDefaultEncryptionConfiguration() {
 
-    return EncryptionConfigurationProfile.builder()
-      .encryptionAlgorithms(List.of(
+    final BasicEncryptionConfiguration config =
+        ExtendedDefaultSecurityConfigurationBootstrap.buildDefaultEncryptionConfiguration();
+
+    config.setDataEncryptionAlgorithms(List.of(
         EncryptionConstants.ALGO_ID_BLOCKCIPHER_AES256_GCM,
         EncryptionConstants.ALGO_ID_BLOCKCIPHER_AES128_GCM,
         EncryptionConstants.ALGO_ID_BLOCKCIPHER_AES192_GCM
-      ))
-      .keyWrapEncryptionAlgorithms(List.of(
-        EncryptionConstants.ALGO_ID_KEYTRANSPORT_RSAOAEP11,
+    ));
+    config.setKeyTransportEncryptionAlgorithms(List.of(
         EncryptionConstants.ALGO_ID_KEYTRANSPORT_RSAOAEP,
+        EncryptionConstants.ALGO_ID_KEYTRANSPORT_RSAOAEP11,
         EncryptionConstants.ALGO_ID_KEYWRAP_AES256,
-        EncryptionConstants.ALGO_ID_KEYWRAP_AES128,
-        EncryptionConstants.ALGO_ID_KEYWRAP_AES192
-      ))
-      .rsaoaepParameters(new RSAOAEPParameters(
+        EncryptionConstants.ALGO_ID_KEYWRAP_AES128
+    ));
+    config.setRSAOAEPParameters(new RSAOAEPParameters(
         SignatureConstants.ALGO_ID_DIGEST_SHA256,
         EncryptionConstants.ALGO_ID_MGF1_SHA1,
-        null))
-      .keyWrapPolicy(SAMLMetadataKeyAgreementEncryptionConfiguration.KeyWrap.Always)
-      .excludedAlgorithms(List.of(
+        null));
+    config.setExcludedAlgorithms(List.of(
         EncryptionConstants.ALGO_ID_BLOCKCIPHER_TRIPLEDES,
         EncryptionConstants.ALGO_ID_KEYTRANSPORT_RSA15,
         EncryptionConstants.ALGO_ID_BLOCKCIPHER_AES128,
         EncryptionConstants.ALGO_ID_BLOCKCIPHER_AES192,
         EncryptionConstants.ALGO_ID_BLOCKCIPHER_AES256
-      ))
-      .build();
+    ));
+
+    return config;
   }
 
   /**
