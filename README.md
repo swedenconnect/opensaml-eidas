@@ -17,15 +17,13 @@ eIDAS (EU REGULATION [910/2014](http://eur-lex.europa.eu/legal-content/EN/TXT/HT
 The eIDAS technical specifications defines a number of SAML elements and attribute definitions which are normally not supported by standard SAML software. The **eidas-opensaml** Open Source Java library extends the OpenSAML framework with support for the definitions from the eIDAS technical specifications.
 
 The following eIDAS specifications are implemented:
-* [eIDAS - Interoperability Architechture v1.2](https://ec.europa.eu/cefdigital/wiki/download/attachments/82773108/eIDAS%20Interoperability%20Architecture%20v.1.2%20Final.pdf)
+* [eIDAS - Interoperability Architechture v1.4](https://docs.swedenconnect.se/opensaml-eidas/specs/eIDAS_Interoperability_Architecture_v_1_4_final.pdf)
 
-* [ eIDAS - Cryptographic requirements for the Interoperability Framework v1.2](https://ec.europa.eu/cefdigital/wiki/download/attachments/82773108/eIDAS%20Cryptographic%20Requirement%20v.1.2%20Final.pdf)
+* [ eIDAS - Cryptographic requirements for the Interoperability Framework v1.4](https://docs.swedenconnect.se/opensaml-eidas/specs/eIDAS_Cryptographic_Requirement_v_1_4_final.pdf)
 
-* [eIDAS SAML Message Format v1.2](https://ec.europa.eu/cefdigital/wiki/download/attachments/82773108/eIDAS%20SAML%20Message%20Format%20v.1.2%20Final.pdf)
+* [eIDAS SAML Message Format v1.4](https://docs.swedenconnect.se/opensaml-eidas/specs/eIDAS_SAML_Message_Format_v_1.4_final.pdf)
 
-* [eIDAS SAML Attribute Profile v1.2](https://ec.europa.eu/cefdigital/wiki/download/attachments/82773108/eIDAS%20SAML%20Attribute%20Profile%20v1.2%20Final.pdf)
-
-> See <https://ec.europa.eu/cefdigital/wiki/display/CEFDIGITAL/eIDAS+eID+Profile> for the eIDAS eID Profile.
+* [eIDAS SAML Attribute Profile v1.4](https://docs.swedenconnect.se/opensaml-eidas/specs/eIDAS_SAML_Attribute_Profile_v1_4_final.pdf)
 
 
 ### How to use the use the eidas-opensaml library
