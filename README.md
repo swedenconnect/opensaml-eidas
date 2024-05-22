@@ -46,7 +46,7 @@ The eidas-opensaml artifacts are published to Maven central and a dependency to 
 
 #### Creating an eIDAS AuthnRequest message
 
-The [eIDAS SAML Message Format v1.2](https://github.com/litsec/eidas-opensaml/files/2219283/eIDAS.Message.Format_v1.2_final.docx) specification describes how a SAML `AuthnRequest` message should be put together to comply to the eIDAS specifications. 
+The [eIDAS SAML Message Format v1.4](https://docs.swedenconnect.se/opensaml-eidas/specs/eIDAS_SAML_Message_Format_v_1.4_final.pdf) specification describes how a SAML `AuthnRequest` message should be put together to comply to the eIDAS specifications. 
 
 [CreateAuthnRequestExample.java](https://github.com/swedenconnect/opensaml-eidas/blob/main/src/test/java/se/swedenconnect/opensaml/eidas/examples/CreateAuthnRequestExample.java) illustrates how you could create an authentication request message using the opensaml-eidas library.
 
@@ -60,13 +60,13 @@ An assertion issued from an eIDAS service will contain the attributes defined in
 
 ##### eIDAS Specifications
 
-* [eIDAS - Interoperability Architechture v1.2](https://ec.europa.eu/cefdigital/wiki/download/attachments/82773108/eIDAS%20Interoperability%20Architecture%20v.1.2%20Final.pdf)
+* [eIDAS - Interoperability Architechture v1.4](https://docs.swedenconnect.se/opensaml-eidas/specs/eIDAS_Interoperability_Architecture_v_1_4_final.pdf)
 
-* [ eIDAS - Cryptographic requirements for the Interoperability Framework v1.2](https://ec.europa.eu/cefdigital/wiki/download/attachments/82773108/eIDAS%20Cryptographic%20Requirement%20v.1.2%20Final.pdf)
+* [ eIDAS - Cryptographic requirements for the Interoperability Framework v1.4](https://docs.swedenconnect.se/opensaml-eidas/specs/eIDAS_Cryptographic_Requirement_v_1_4_final.pdf)
 
-* [eIDAS SAML Message Format v1.2](https://ec.europa.eu/cefdigital/wiki/download/attachments/82773108/eIDAS%20SAML%20Message%20Format%20v.1.2%20Final.pdf)
+* [eIDAS SAML Message Format v1.4](https://docs.swedenconnect.se/opensaml-eidas/specs/eIDAS_SAML_Message_Format_v_1.4_final.pdf)
 
-* [eIDAS SAML Attribute Profile v1.2](https://ec.europa.eu/cefdigital/wiki/download/attachments/82773108/eIDAS%20SAML%20Attribute%20Profile%20v1.2%20Final.pdf)
+* [eIDAS SAML Attribute Profile v1.4](https://docs.swedenconnect.se/opensaml-eidas/specs/eIDAS_SAML_Attribute_Profile_v1_4_final.pdf)
 
 ##### Swedish eID Framework
 
