@@ -15,20 +15,19 @@
  */
 package se.swedenconnect.opensaml.eidas.ext.attributes.impl;
 
-import jakarta.annotation.Nonnull;
-import jakarta.annotation.Nullable;
 import org.opensaml.core.xml.schema.impl.XSStringImpl;
+import se.swedenconnect.opensaml.eidas.ext.attributes.CountryStringType;
 
-import se.swedenconnect.opensaml.eidas.ext.attributes.PersonIdentifierType;
-
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import java.util.Objects;
 
 /**
- * Implementation of the {@link PersonIdentifierType} interface.
+ * Abstract implementation class of {@link CountryStringType}.
  *
  * @author Martin Lindström
  */
-public class PersonIdentifierTypeImpl extends XSStringImpl implements PersonIdentifierType {
+public class CountryStringTypeImpl extends XSStringImpl implements CountryStringType {
 
   /**
    * Constructor.
@@ -37,42 +36,29 @@ public class PersonIdentifierTypeImpl extends XSStringImpl implements PersonIden
    * @param elementLocalName the local name of the XML element this Object represents
    * @param namespacePrefix the prefix for the given namespace
    */
-  public PersonIdentifierTypeImpl(
-      final String namespaceURI, final String elementLocalName, final String namespacePrefix) {
+  protected CountryStringTypeImpl(@Nonnull final String namespaceURI, @Nonnull final String elementLocalName,
+      @Nonnull final String namespacePrefix) {
     super(namespaceURI, elementLocalName, namespacePrefix);
   }
 
-  /** {@inheritDoc} */
-  @Override
-  public String getNationalityCode() {
-    return this.getPart(0);
-  }
-
-  /** {@inheritDoc} */
-  @Override
-  public String getDestinationNationalityCode() {
-    return this.getPart(1);
-  }
-
-  /** {@inheritDoc} */
-  @Override
-  public String getIdentifierString() {
-    return this.getPart(2);
-  }
-
   /**
-   * Extracts the given part from the unique identifier.
+   * Assigns the value which must be a ISO 3166-1 country code.
+   * <p>
+   * Note: If supplied with lowercase letters, the method will replace those with uppercase.
+   * </p>
    *
-   * @param pos position
-   * @return the part or {@code null}
+   * @param newValue the two-letter ISO 3166-1 country code
+   * @throws IllegalArgumentException if the supplied string is not a valid country code
    */
-  private String getPart(final int pos) {
-    final String value = this.getValue();
-    if (value == null) {
-      return null;
+  @Override
+  public void setValue(@Nullable final String newValue) throws IllegalArgumentException {
+    if (newValue == null) {
+      super.setValue(null);
     }
-    final String[] parts = value.split("/");
-    return parts.length >= pos + 1 ? parts[pos] : null;
+    if (!newValue.matches("[a-zA-Z]{2}")) {
+      throw new IllegalArgumentException("Invalid country code: " + newValue);
+    }
+    super.setValue(newValue.toUpperCase());
   }
 
   /** {@inheritDoc} */
@@ -84,9 +70,8 @@ public class PersonIdentifierTypeImpl extends XSStringImpl implements PersonIden
 
   /** {@inheritDoc} */
   @Override
-  public void parseStringValue(@Nonnull final String value) throws NullPointerException {
+  public void parseStringValue(@Nonnull final String value) throws NullPointerException, IllegalArgumentException {
     Objects.requireNonNull(value, "value must not be null");
     this.setValue(value);
   }
-
 }

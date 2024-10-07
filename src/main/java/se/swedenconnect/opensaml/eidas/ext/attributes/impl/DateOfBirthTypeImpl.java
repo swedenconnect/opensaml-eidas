@@ -1,5 +1,5 @@
 /*
- * Copyright 2016-2023 Sweden Connect
+ * Copyright 2016-2024 Sweden Connect
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,16 +15,18 @@
  */
 package se.swedenconnect.opensaml.eidas.ext.attributes.impl;
 
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
+import org.opensaml.core.xml.AbstractXMLObject;
+import org.opensaml.core.xml.XMLObject;
+import se.swedenconnect.opensaml.eidas.ext.attributes.DateOfBirthType;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.Collections;
 import java.util.List;
-
-import org.opensaml.core.xml.AbstractXMLObject;
-import org.opensaml.core.xml.XMLObject;
-
-import se.swedenconnect.opensaml.eidas.ext.attributes.DateOfBirthType;
+import java.util.Objects;
 
 /**
  * Implementation of {@link DateOfBirthType}.
@@ -86,13 +88,15 @@ public class DateOfBirthTypeImpl extends AbstractXMLObject implements DateOfBirt
 
   /** {@inheritDoc} */
   @Override
+  @Nullable
   public String toStringValue() {
     return this.formatDate();
   }
 
   /** {@inheritDoc} */
   @Override
-  public void parseStringValue(final String value) {
+  public void parseStringValue(@Nonnull final String value) throws NullPointerException, IllegalArgumentException {
+    Objects.requireNonNull(value, "value must not be null");
     try {
       this.setDate(LocalDate.parse(value, formatter));
     }

@@ -15,19 +15,16 @@
  */
 package se.swedenconnect.opensaml.eidas.ext.attributes.impl;
 
-import jakarta.annotation.Nonnull;
-import jakarta.annotation.Nullable;
-import org.opensaml.core.xml.schema.impl.XSStringImpl;
-import se.swedenconnect.opensaml.eidas.ext.attributes.PlaceOfBirthType;
+import se.swedenconnect.opensaml.eidas.ext.attributes.CountryOfBirthType;
 
-import java.util.Objects;
+import javax.annotation.Nonnull;
 
 /**
- * Implementation of the {@link PlaceOfBirthType} interface.
+ * Implementation class for {@link CountryOfBirthType}.
  *
  * @author Martin Lindström
  */
-public class PlaceOfBirthTypeImpl extends XSStringImpl implements PlaceOfBirthType {
+public class CountryOfBirthTypeImpl extends CountryStringTypeImpl implements CountryOfBirthType {
 
   /**
    * Constructor.
@@ -36,22 +33,9 @@ public class PlaceOfBirthTypeImpl extends XSStringImpl implements PlaceOfBirthTy
    * @param elementLocalName the local name of the XML element this Object represents
    * @param namespacePrefix the prefix for the given namespace
    */
-  public PlaceOfBirthTypeImpl(final String namespaceURI, final String elementLocalName, final String namespacePrefix) {
+  protected CountryOfBirthTypeImpl(@Nonnull final String namespaceURI,
+      @Nonnull final String elementLocalName, @Nonnull final String namespacePrefix) {
     super(namespaceURI, elementLocalName, namespacePrefix);
-  }
-
-  /** {@inheritDoc} */
-  @Override
-  @Nullable
-  public String toStringValue() {
-    return this.getValue();
-  }
-
-  /** {@inheritDoc} */
-  @Override
-  public void parseStringValue(@Nonnull final String value) throws NullPointerException {
-    Objects.requireNonNull(value, "value must not be null");
-    this.setValue(value);
   }
 
 }
