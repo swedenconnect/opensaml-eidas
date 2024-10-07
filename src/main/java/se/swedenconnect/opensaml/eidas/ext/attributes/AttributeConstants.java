@@ -89,6 +89,42 @@ public class AttributeConstants {
   /** PlaceOfBirth friendly name. */
   public static final String EIDAS_PLACE_OF_BIRTH_ATTRIBUTE_FRIENDLY_NAME = "PlaceOfBirth";
 
+  /** Attribute name for Nationality. */
+  public static final String EIDAS_NATIONALITY_ATTRIBUTE_NAME = NATURAL_PERSON_PREFIX + "Nationality";
+
+  /** Nationality friendly name. */
+  public static final String EIDAS_NATIONALITY_ATTRIBUTE_FRIENDLY_NAME = "Nationality";
+
+  /** Attribute name for CountryOfBirth. */
+  public static final String EIDAS_COUNTRY_OF_BIRTH_ATTRIBUTE_NAME = NATURAL_PERSON_PREFIX + "CountryOfBirth";
+
+  /** CountryOfBirth friendly name. */
+  public static final String EIDAS_COUNTRY_OF_BIRTH_ATTRIBUTE_FRIENDLY_NAME = "CountryOfBirth";
+
+  /** Attribute name for TownOfBirth. */
+  public static final String EIDAS_TOWN_OF_BIRTH_ATTRIBUTE_NAME = NATURAL_PERSON_PREFIX + "TownOfBirth";
+
+  /** TownOfBirth friendly name. */
+  public static final String EIDAS_TOWN_OF_BIRTH_ATTRIBUTE_FRIENDLY_NAME = "TownOfBirth";
+
+  /** Attribute name for CountryOfResidence. */
+  public static final String EIDAS_COUNTRY_OF_RESIDENCE_ATTRIBUTE_NAME = NATURAL_PERSON_PREFIX + "CountryOfResidence";
+
+  /** CountryOfResidence friendly name. */
+  public static final String EIDAS_COUNTRY_OF_RESIDENCE_ATTRIBUTE_FRIENDLY_NAME = "CountryOfResidence";
+
+  /** Attribute name for PhoneNumber. */
+  public static final String EIDAS_PHONE_NUMBER_ATTRIBUTE_NAME = NATURAL_PERSON_PREFIX + "PhoneNumber";
+
+  /** PhoneNumber friendly name. */
+  public static final String EIDAS_PHONE_NUMBER_ATTRIBUTE_FRIENDLY_NAME = "PhoneNumber";
+
+  /** Attribute name for EmailAddress. */
+  public static final String EIDAS_EMAIL_ADDRESS_ATTRIBUTE_NAME = NATURAL_PERSON_PREFIX + "EmailAddress";
+
+  /** EmailAddress friendly name. */
+  public static final String EIDAS_EMAIL_ADDRESS_ATTRIBUTE_FRIENDLY_NAME = "EmailAddress";
+
   /** Attribute name for representative PersonIdentifier. */
   public static final String EIDAS_REPRESENTATIVE_PERSON_IDENTIFIER_ATTRIBUTE_NAME =
       REPRESENTATIVE_NATURAL_PERSON_PREFIX + "PersonIdentifier";

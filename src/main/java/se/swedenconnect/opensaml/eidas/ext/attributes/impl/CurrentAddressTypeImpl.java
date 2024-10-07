@@ -1,5 +1,5 @@
 /*
- * Copyright 2016-2023 Litsec AB
+ * Copyright 2016-2024 Litsec AB
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,11 +18,15 @@ package se.swedenconnect.opensaml.eidas.ext.attributes.impl;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.List;
+import java.util.Objects;
 
 import org.opensaml.core.xml.XMLObject;
 import org.opensaml.core.xml.schema.XSString;
 
 import se.swedenconnect.opensaml.eidas.ext.attributes.CurrentAddressType;
+
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 /**
  * Implementation of {@code CurrentAddressType}.
@@ -74,12 +78,14 @@ public class CurrentAddressTypeImpl extends CurrentAddressStructuredTypeImpl imp
 
   /** {@inheritDoc} */
   @Override
+  @Nullable
   public String toStringValue() {
     return this.toSwedishEidString();
   }
 
   @Override
-  public void parseStringValue(final String value) throws IllegalArgumentException, NullPointerException {
+  public void parseStringValue(@Nonnull final String value) throws IllegalArgumentException, NullPointerException {
+    Objects.requireNonNull(value, "value must not be null");
     // Not supported
   }
 

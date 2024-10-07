@@ -1,5 +1,5 @@
 /*
- * Copyright 2016-2023 Sweden Connect
+ * Copyright 2016-2024 Sweden Connect
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,10 +15,13 @@
  */
 package se.swedenconnect.opensaml.eidas.ext.attributes.impl;
 
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
 import org.opensaml.core.xml.schema.XSBooleanValue;
 import org.opensaml.core.xml.schema.impl.XSStringImpl;
-
 import se.swedenconnect.opensaml.eidas.ext.attributes.TransliterationStringType;
+
+import java.util.Objects;
 
 /**
  * Abstract implementation class of {@link TransliterationStringType}.
@@ -76,13 +79,15 @@ public abstract class TransliterationStringTypeImpl extends XSStringImpl impleme
 
   /** {@inheritDoc} */
   @Override
+  @Nullable
   public String toStringValue() {
     return this.getValue();
   }
 
   /** {@inheritDoc} */
   @Override
-  public void parseStringValue(final String value) {
+  public void parseStringValue(@Nonnull final String value) throws NullPointerException {
+    Objects.requireNonNull(value, "value must not be null");
     this.setValue(value);
   }
 

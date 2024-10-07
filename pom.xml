@@ -7,7 +7,7 @@
   <groupId>se.swedenconnect.opensaml</groupId>
   <artifactId>opensaml-eidas</artifactId>
   <packaging>jar</packaging>
-  <version>3.1.0</version>
+  <version>3.1.1-SNAPSHOT</version>
 
   <name>Sweden Connect :: eIDAS :: OpenSAML 5.X extensions</name>
   <description>OpenSAML 5.X extension library for the eIDAS Framework</description>
@@ -47,9 +47,9 @@
 
     <opensaml.version>5.1.2</opensaml.version>
     <shib.support.version>9.1.2</shib.support.version>
-    <junit.version>5.10.2</junit.version>
-    <slf4j.version>2.0.13</slf4j.version>
-    <jackson.version>2.17.1</jackson.version>
+    <junit.version>5.11.2</junit.version>
+    <slf4j.version>2.0.16</slf4j.version>
+    <jackson.version>2.18.0</jackson.version>
     <bouncycastle.version>1.78.1</bouncycastle.version>
   </properties>
 
@@ -89,7 +89,7 @@
       <dependency>
         <groupId>commons-codec</groupId>
         <artifactId>commons-codec</artifactId>
-        <version>1.17.0</version>
+        <version>1.17.1</version>
       </dependency>
 
       <dependency>
@@ -275,7 +275,7 @@
                 Allows manual inspection of the staging repo before deploying
                 it to the central repo.
                 Use 'mvn nexus-staging:release -Prelease' to release and
-                'mvn nexus-staging:drop' to abort. 
+                'mvn nexus-staging:drop' to abort.
                -->
             </configuration>
           </plugin>

@@ -1,5 +1,5 @@
 /*
- * Copyright 2016-2023 Sweden Connect
+ * Copyright 2016-2024 Sweden Connect
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,6 +15,9 @@
  */
 package se.swedenconnect.opensaml.eidas.ext.attributes;
 
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
+
 /**
  * The bad decision of using dedicated XML types for each and every eIDAS attribute makes it hard for profiles that want
  * to convert eIDAS attributes to their own definitions. This interface makes it somewhat easier to transform to and
@@ -29,6 +32,7 @@ public interface EidasAttributeValueType {
    *
    * @return string value of the attribute
    */
+  @Nullable
   String toStringValue();
 
   /**
@@ -37,7 +41,8 @@ public interface EidasAttributeValueType {
    * @param value the value
    * @throws IllegalArgumentException for parsing errors
    * @throws NullPointerException if the value is null
+   * @throws IllegalArgumentException if the value can not be parsed
    */
-  void parseStringValue(final String value) throws IllegalArgumentException, NullPointerException;
+  void parseStringValue(@Nonnull final String value) throws IllegalArgumentException, NullPointerException;
 
 }

@@ -1,5 +1,5 @@
 /*
- * Copyright 2016-2023 Sweden Connect
+ * Copyright 2016-2024 Sweden Connect
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,14 +15,16 @@
  */
 package se.swedenconnect.opensaml.eidas.ext.attributes.impl;
 
-import java.util.List;
-import java.util.Optional;
-
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
 import org.opensaml.core.xml.AbstractXMLObject;
 import org.opensaml.core.xml.XMLObject;
-
 import se.swedenconnect.opensaml.eidas.ext.attributes.GenderType;
 import se.swedenconnect.opensaml.eidas.ext.attributes.GenderTypeEnumeration;
+
+import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
 
 /**
  * Implementation of {@link GenderType}.
@@ -66,6 +68,7 @@ public class GenderTypeImpl extends AbstractXMLObject implements GenderType {
 
   /** {@inheritDoc} */
   @Override
+  @Nullable
   public String toStringValue() {
     return Optional.ofNullable(this.getGender())
         .map(GenderTypeEnumeration::getValue)
@@ -74,11 +77,13 @@ public class GenderTypeImpl extends AbstractXMLObject implements GenderType {
 
   /** {@inheritDoc} */
   @Override
-  public void parseStringValue(final String value) {
+  public void parseStringValue(@Nonnull final String value) throws NullPointerException, IllegalArgumentException {
+    Objects.requireNonNull(value, "value must not be null");
     final GenderTypeEnumeration g = GenderTypeEnumeration.fromValue(value);
-    if (g != null) {
-      this.setGender(g);
+    if (g == null) {
+      throw new IllegalArgumentException("Invalid gender identifier: " + value);
     }
+    this.setGender(g);
   }
 
 }
