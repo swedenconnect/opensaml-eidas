@@ -1,5 +1,5 @@
 /*
- * Copyright 2016-2023 Sweden Connect
+ * Copyright 2016-2024 Sweden Connect
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,9 +16,10 @@
 package se.swedenconnect.opensaml.eidas.ext.impl;
 
 import org.opensaml.saml.common.AbstractSAMLObjectBuilder;
-
 import se.swedenconnect.opensaml.eidas.common.EidasConstants;
 import se.swedenconnect.opensaml.eidas.ext.RequestedAttributes;
+
+import javax.annotation.Nonnull;
 
 /**
  * Builder for {@link RequestedAttributes}.
@@ -28,6 +29,7 @@ import se.swedenconnect.opensaml.eidas.ext.RequestedAttributes;
 public class RequestedAttributesBuilder extends AbstractSAMLObjectBuilder<RequestedAttributes> {
 
   /** {@inheritDoc} */
+  @Nonnull
   @Override
   public RequestedAttributes buildObject() {
     return this.buildObject(EidasConstants.EIDAS_NS, RequestedAttributes.DEFAULT_ELEMENT_LOCAL_NAME,
@@ -35,9 +37,10 @@ public class RequestedAttributesBuilder extends AbstractSAMLObjectBuilder<Reques
   }
 
   /** {@inheritDoc} */
+  @Nonnull
   @Override
   public RequestedAttributes buildObject(
-      final String namespaceURI, final String localName, final String namespacePrefix) {
+      final String namespaceURI, @Nonnull final String localName, final String namespacePrefix) {
     return new RequestedAttributesImpl(namespaceURI, localName, namespacePrefix);
   }
 

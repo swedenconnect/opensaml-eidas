@@ -1,5 +1,5 @@
 /*
- * Copyright 2016-2023 Sweden Connect
+ * Copyright 2016-2024 Sweden Connect
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,20 +15,20 @@
  */
 package se.swedenconnect.opensaml.eidas.metadata.impl;
 
+import com.google.common.base.Strings;
+import net.shibboleth.shared.xml.DOMTypeSupport;
 import org.opensaml.core.xml.XMLObject;
 import org.opensaml.core.xml.io.UnmarshallingException;
 import org.opensaml.saml.common.AbstractSAMLObjectUnmarshaller;
 import org.opensaml.xmlsec.signature.Signature;
 import org.w3c.dom.Attr;
-
-import com.google.common.base.Strings;
-
-import net.shibboleth.shared.xml.DOMTypeSupport;
 import se.swedenconnect.opensaml.eidas.metadata.DistributionPoints;
 import se.swedenconnect.opensaml.eidas.metadata.MetadataList;
 import se.swedenconnect.opensaml.eidas.metadata.MetadataServiceList;
 import se.swedenconnect.opensaml.eidas.metadata.MetadataServiceListVersion;
 import se.swedenconnect.opensaml.eidas.metadata.SchemeInformation;
+
+import javax.annotation.Nonnull;
 
 /**
  * A thread safe unmarshaller for {@link MetadataServiceList}.
@@ -39,7 +39,7 @@ public class MetadataServiceListUnmarshaller extends AbstractSAMLObjectUnmarshal
 
   /** {@inheritDoc} */
   @Override
-  protected void processChildElement(final XMLObject parentObject, final XMLObject childObject)
+  protected void processChildElement(@Nonnull final XMLObject parentObject, @Nonnull final XMLObject childObject)
       throws UnmarshallingException {
 
     final MetadataServiceList mdsl = (MetadataServiceList) parentObject;
@@ -63,7 +63,8 @@ public class MetadataServiceListUnmarshaller extends AbstractSAMLObjectUnmarshal
 
   /** {@inheritDoc} */
   @Override
-  protected void processAttribute(final XMLObject samlObject, final Attr attribute) throws UnmarshallingException {
+  protected void processAttribute(@Nonnull final XMLObject samlObject, final Attr attribute)
+      throws UnmarshallingException {
 
     final MetadataServiceList mdsl = (MetadataServiceList) samlObject;
 

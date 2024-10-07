@@ -1,5 +1,5 @@
 /*
- * Copyright 2016-2023 Sweden Connect
+ * Copyright 2016-2024 Sweden Connect
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,6 +19,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import javax.annotation.Nonnull;
 import javax.xml.namespace.QName;
 
 import org.opensaml.core.xml.AbstractXMLObject;
@@ -64,12 +65,12 @@ public class MetadataListImpl extends AbstractXMLObject implements MetadataList 
   /** {@inheritDoc} */
   @Override
   public List<XMLObject> getOrderedChildren() {
-    final ArrayList<XMLObject> children = new ArrayList<>();
-    children.addAll(this.metadataLocations);
+    final ArrayList<XMLObject> children = new ArrayList<>(this.metadataLocations);
     return Collections.unmodifiableList(children);
   }
 
   /** {@inheritDoc} */
+  @Nonnull
   @Override
   public AttributeMap getUnknownAttributes() {
     return this.unknownAttributes;

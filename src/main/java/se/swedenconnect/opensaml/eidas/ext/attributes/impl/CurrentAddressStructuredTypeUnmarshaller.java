@@ -1,5 +1,5 @@
 /*
- * Copyright 2016-2023 Sweden Connect
+ * Copyright 2016-2024 Sweden Connect
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,10 +15,10 @@
  */
 package se.swedenconnect.opensaml.eidas.ext.attributes.impl;
 
+import jakarta.annotation.Nonnull;
 import org.opensaml.core.xml.XMLObject;
 import org.opensaml.core.xml.io.AbstractXMLObjectUnmarshaller;
 import org.opensaml.core.xml.io.UnmarshallingException;
-
 import se.swedenconnect.opensaml.eidas.ext.attributes.CurrentAddressStructuredType;
 import se.swedenconnect.opensaml.eidas.ext.attributes.address.AdminunitFirstline;
 import se.swedenconnect.opensaml.eidas.ext.attributes.address.AdminunitSecondline;
@@ -39,7 +39,7 @@ public class CurrentAddressStructuredTypeUnmarshaller extends AbstractXMLObjectU
 
   /** {@inheritDoc} */
   @Override
-  protected void processChildElement(final XMLObject parentObject, final XMLObject childObject)
+  protected void processChildElement(@Nonnull final XMLObject parentObject, @Nonnull final XMLObject childObject)
       throws UnmarshallingException {
     final CurrentAddressStructuredType address = (CurrentAddressStructuredType) parentObject;
 

@@ -1,5 +1,5 @@
 /*
- * Copyright 2016-2023 Sweden Connect
+ * Copyright 2016-2024 Sweden Connect
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,12 +15,11 @@
  */
 package se.swedenconnect.opensaml.eidas.ext.attributes.impl;
 
-import java.io.ByteArrayInputStream;
-import java.io.IOException;
-import java.nio.charset.StandardCharsets;
-import java.util.HashMap;
-import java.util.Map;
-
+import net.shibboleth.shared.codec.Base64Support;
+import net.shibboleth.shared.codec.DecodingException;
+import net.shibboleth.shared.primitive.StringSupport;
+import net.shibboleth.shared.xml.XMLConstants;
+import net.shibboleth.shared.xml.XMLParserException;
 import org.opensaml.core.xml.XMLObject;
 import org.opensaml.core.xml.config.XMLObjectProviderRegistrySupport;
 import org.opensaml.core.xml.io.UnmarshallingException;
@@ -31,14 +30,14 @@ import org.w3c.dom.Element;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 import org.w3c.dom.Text;
-
-import net.shibboleth.shared.codec.Base64Support;
-import net.shibboleth.shared.codec.DecodingException;
-import net.shibboleth.shared.primitive.StringSupport;
-import net.shibboleth.shared.xml.XMLConstants;
-import net.shibboleth.shared.xml.XMLParserException;
 import se.swedenconnect.opensaml.eidas.common.EidasConstants;
 import se.swedenconnect.opensaml.eidas.ext.attributes.CurrentAddressType;
+
+import javax.annotation.Nonnull;
+import java.io.ByteArrayInputStream;
+import java.nio.charset.StandardCharsets;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Thread safe unmarshaller for {@link CurrentAddressType}.
@@ -48,13 +47,14 @@ import se.swedenconnect.opensaml.eidas.ext.attributes.CurrentAddressType;
 public class CurrentAddressTypeUnmarshaller extends CurrentAddressStructuredTypeUnmarshaller {
 
   /** Class logger. */
-  private final Logger log = LoggerFactory.getLogger(CurrentAddressTypeUnmarshaller.class);
+  private final static Logger log = LoggerFactory.getLogger(CurrentAddressTypeUnmarshaller.class);
 
   /**
    * Special handling of the Base64 encoded value that represents the address elements.
    */
+  @Nonnull
   @Override
-  public XMLObject unmarshall(Element domElement) throws UnmarshallingException {
+  public XMLObject unmarshall(final Element domElement) throws UnmarshallingException {
 
     Document newDocument = null;
 
@@ -65,7 +65,7 @@ public class CurrentAddressTypeUnmarshaller extends CurrentAddressStructuredType
         log.info("Ignoring node {} - it is not a text node", childNode.getNodeName());
       }
       else {
-        newDocument = parseContents((Text) childNode, domElement);
+        newDocument = this.parseContents((Text) childNode, domElement);
         if (newDocument != null) {
           break;
         }
@@ -86,7 +86,7 @@ public class CurrentAddressTypeUnmarshaller extends CurrentAddressStructuredType
    */
   private Document parseContents(final Text node, final Element domElement) throws UnmarshallingException {
 
-    String textContent = StringSupport.trimOrNull(node.getWholeText());
+    final String textContent = StringSupport.trimOrNull(node.getWholeText());
     if (textContent == null) {
       log.error("Expected Base64 encoded address elements");
       return null;
@@ -101,7 +101,7 @@ public class CurrentAddressTypeUnmarshaller extends CurrentAddressStructuredType
       // Then build a fake XML document holding the contents in element form.
       //
 
-      // The elements represented in 'addressElements' may have a namespace prefix
+      // The elements represented in 'addressElements' may have a namespace prefix,
       // so we find out if we need to include that in the XML definition.
 
       final Map<String, String> bindings = getNamespaceBindings(domElement);
@@ -119,29 +119,29 @@ public class CurrentAddressTypeUnmarshaller extends CurrentAddressStructuredType
 
       final StringBuilder sb = new StringBuilder();
       sb.append("<?xml version=\"1.0\" encoding=\"UTF-8\"?>");
-      sb.append("<" + domElement.getNodeName());
-      for (Map.Entry<String, String> entry : bindings.entrySet()) {
-        sb.append(" " + entry.getKey() + "=\"" + entry.getValue() + "\"");
+      sb.append("<").append(domElement.getNodeName());
+      for (final Map.Entry<String, String> entry : bindings.entrySet()) {
+        sb.append(" ").append(entry.getKey()).append("=\"").append(entry.getValue()).append("\"");
       }
       sb.append('>');
       sb.append(addressElements);
-      sb.append("</" + domElement.getNodeName() + ">");
+      sb.append("</").append(domElement.getNodeName()).append(">");
 
       // Parse into an XML document.
       //
       final Document doc = XMLObjectProviderRegistrySupport.getParserPool()
-          .parse(new ByteArrayInputStream(sb.toString().getBytes("UTF-8")));
+          .parse(new ByteArrayInputStream(sb.toString().getBytes(StandardCharsets.UTF_8)));
 
       // Copy the input dom element and replace its child node with our new nodes.
       //
       final Document newDoc = XMLObjectProviderRegistrySupport.getParserPool().newDocument();
       final Element newDom = (Element) domElement.cloneNode(true);
-      for (Map.Entry<String, String> entry : bindings.entrySet()) {
+      for (final Map.Entry<String, String> entry : bindings.entrySet()) {
         newDom.setAttributeNS(XMLConstants.XMLNS_NS, entry.getKey(), entry.getValue());
       }
       newDoc.adoptNode(newDom);
-      for (Node child; (child = newDom.getFirstChild()) != null; newDom.removeChild(child))
-        ;
+      for (Node child; (child = newDom.getFirstChild()) != null; newDom.removeChild(child)) {
+      }
       Node newChild = doc.getDocumentElement().getFirstChild();
       while (newChild != null) {
         final Node importedChild = newDoc.importNode(newChild, true);
@@ -152,7 +152,7 @@ public class CurrentAddressTypeUnmarshaller extends CurrentAddressStructuredType
 
       return newDoc;
     }
-    catch (IOException | XMLParserException | DecodingException e) {
+    catch (final XMLParserException | DecodingException e) {
       throw new UnmarshallingException(e);
     }
   }
@@ -165,7 +165,7 @@ public class CurrentAddressTypeUnmarshaller extends CurrentAddressStructuredType
    * @return a namespace map
    */
   private static Map<String, String> getNamespaceBindings(final Element element) {
-    Map<String, String> namespaceMap = new HashMap<String, String>();
+    final Map<String, String> namespaceMap = new HashMap<>();
     getNamespaceBindings(element, namespaceMap);
     return namespaceMap;
   }
@@ -180,16 +180,16 @@ public class CurrentAddressTypeUnmarshaller extends CurrentAddressStructuredType
     if (element == null) {
       return;
     }
-    NamedNodeMap attrs = element.getAttributes();
+    final NamedNodeMap attrs = element.getAttributes();
     for (int i = 0; i < attrs.getLength(); i++) {
-      Node node = attrs.item(i);
-      String name = node.getNodeName();
+      final Node node = attrs.item(i);
+      final String name = node.getNodeName();
       if ((name != null
           && (XMLConstants.XMLNS_PREFIX.equals(name) || name.startsWith(XMLConstants.XMLNS_PREFIX + ":")))) {
         namespaceMap.put(name, node.getNodeValue());
       }
     }
-    Node parent = element.getParentNode();
+    final Node parent = element.getParentNode();
     if (parent instanceof Element) {
       getNamespaceBindings((Element) parent, namespaceMap);
     }

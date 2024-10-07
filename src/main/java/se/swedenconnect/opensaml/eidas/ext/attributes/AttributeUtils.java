@@ -1,5 +1,5 @@
 /*
- * Copyright 2016-2023 Sweden Connect
+ * Copyright 2016-2024 Sweden Connect
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -85,7 +85,7 @@ public class AttributeUtils {
       final QName schemaType = (QName) clazz.getDeclaredField("TYPE_NAME").get(null);
       return createAttributeValueObject(schemaType, clazz);
     }
-    catch (NoSuchFieldException | IllegalArgumentException | IllegalAccessException | SecurityException e) {
+    catch (final NoSuchFieldException | IllegalArgumentException | IllegalAccessException | SecurityException e) {
       throw new RuntimeException(e);
     }
   }

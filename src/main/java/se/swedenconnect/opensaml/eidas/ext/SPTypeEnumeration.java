@@ -1,5 +1,5 @@
 /*
- * Copyright 2016-2023 Sweden Connect
+ * Copyright 2016-2024 Sweden Connect
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -29,7 +29,7 @@ public enum SPTypeEnumeration {
   PRIVATE("private");
 
   /** The SP type. */
-  private String type;
+  private final String type;
 
   /**
    * Returns the type value.
@@ -48,7 +48,7 @@ public enum SPTypeEnumeration {
    * @throws IllegalArgumentException if the supplied value is not a valid SPType
    */
   public static SPTypeEnumeration parseValue(final String value) {
-    for (SPTypeEnumeration e : SPTypeEnumeration.values()) {
+    for (final SPTypeEnumeration e : SPTypeEnumeration.values()) {
       if (e.getValue().equalsIgnoreCase(value)) {
         return e;
       }
@@ -67,7 +67,7 @@ public enum SPTypeEnumeration {
    *
    * @param type the SP type
    */
-  private SPTypeEnumeration(final String type) {
+  SPTypeEnumeration(final String type) {
     this.type = type;
   }
 

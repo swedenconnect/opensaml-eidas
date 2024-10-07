@@ -1,5 +1,5 @@
 /*
- * Copyright 2016-2023 Sweden Connect
+ * Copyright 2016-2024 Sweden Connect
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,9 +16,10 @@
 package se.swedenconnect.opensaml.eidas.ext.impl;
 
 import org.opensaml.saml.common.AbstractSAMLObjectBuilder;
-
 import se.swedenconnect.opensaml.eidas.common.EidasConstants;
 import se.swedenconnect.opensaml.eidas.ext.NodeCountry;
+
+import javax.annotation.Nonnull;
 
 /**
  * Builder for {@link NodeCountry} objects.
@@ -28,6 +29,7 @@ import se.swedenconnect.opensaml.eidas.ext.NodeCountry;
 public class NodeCountryBuilder extends AbstractSAMLObjectBuilder<NodeCountry> {
 
   /** {@inheritDoc} */
+  @Nonnull
   @Override
   public NodeCountry buildObject() {
     return this.buildObject(EidasConstants.EIDAS_NS, NodeCountry.DEFAULT_ELEMENT_LOCAL_NAME,
@@ -35,8 +37,10 @@ public class NodeCountryBuilder extends AbstractSAMLObjectBuilder<NodeCountry> {
   }
 
   /** {@inheritDoc} */
+  @Nonnull
   @Override
-  public NodeCountry buildObject(final String namespaceURI, final String localName, final String namespacePrefix) {
+  public NodeCountry buildObject(
+      final String namespaceURI, @Nonnull final String localName, final String namespacePrefix) {
     return new NodeCountryImpl(namespaceURI, localName, namespacePrefix);
   }
 

@@ -1,5 +1,5 @@
 /*
- * Copyright 2016-2023 Sweden Connect
+ * Copyright 2016-2024 Sweden Connect
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,8 +15,8 @@
  */
 package se.swedenconnect.opensaml.eidas.ext.attributes.address.impl;
 
+import jakarta.annotation.Nonnull;
 import org.opensaml.core.xml.AbstractXMLObjectBuilder;
-
 import se.swedenconnect.opensaml.eidas.common.EidasConstants;
 import se.swedenconnect.opensaml.eidas.ext.attributes.address.PostCode;
 
@@ -27,7 +27,12 @@ import se.swedenconnect.opensaml.eidas.ext.attributes.address.PostCode;
  */
 public class PostCodeBuilder extends AbstractXMLObjectBuilder<PostCode> {
 
-  /** {@inheritDoc} */
+  /**
+   * Builds a {@link PostCode} object.
+   *
+   * @return a {@link PostCode} object
+   */
+  @Nonnull
   public PostCode buildObject() {
     return this.buildObject(EidasConstants.EIDAS_NP_NS, PostCode.DEFAULT_ELEMENT_LOCAL_NAME,
         EidasConstants.EIDAS_NP_PREFIX);
@@ -35,7 +40,9 @@ public class PostCodeBuilder extends AbstractXMLObjectBuilder<PostCode> {
 
   /** {@inheritDoc} */
   @Override
-  public PostCode buildObject(final String namespaceURI, final String localName, final String namespacePrefix) {
+  @Nonnull
+  public PostCode buildObject(
+      final String namespaceURI, @Nonnull final String localName, final String namespacePrefix) {
     return new PostCodeImpl(namespaceURI, localName, namespacePrefix);
   }
 

@@ -1,5 +1,5 @@
 /*
- * Copyright 2016-2023 Sweden Connect
+ * Copyright 2016-2024 Sweden Connect
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,8 +15,8 @@
  */
 package se.swedenconnect.opensaml.eidas.ext.attributes.address.impl;
 
+import jakarta.annotation.Nonnull;
 import org.opensaml.core.xml.AbstractXMLObjectBuilder;
-
 import se.swedenconnect.opensaml.eidas.common.EidasConstants;
 import se.swedenconnect.opensaml.eidas.ext.attributes.address.Thoroughfare;
 
@@ -27,7 +27,12 @@ import se.swedenconnect.opensaml.eidas.ext.attributes.address.Thoroughfare;
  */
 public class ThoroughfareBuilder extends AbstractXMLObjectBuilder<Thoroughfare> {
 
-  /** {@inheritDoc} */
+  /**
+   * Builds a {@link Thoroughfare} object.
+   *
+   * @return a {@link Thoroughfare} object
+   */
+  @Nonnull
   public Thoroughfare buildObject() {
     return this.buildObject(EidasConstants.EIDAS_NP_NS, Thoroughfare.DEFAULT_ELEMENT_LOCAL_NAME,
         EidasConstants.EIDAS_NP_PREFIX);
@@ -35,7 +40,9 @@ public class ThoroughfareBuilder extends AbstractXMLObjectBuilder<Thoroughfare> 
 
   /** {@inheritDoc} */
   @Override
-  public Thoroughfare buildObject(final String namespaceURI, final String localName, final String namespacePrefix) {
+  @Nonnull
+  public Thoroughfare buildObject(
+      final String namespaceURI, @Nonnull final String localName, final String namespacePrefix) {
     return new ThoroughfareImpl(namespaceURI, localName, namespacePrefix);
   }
 

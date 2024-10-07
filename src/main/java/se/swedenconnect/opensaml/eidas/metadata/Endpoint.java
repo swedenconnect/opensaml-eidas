@@ -1,5 +1,5 @@
 /*
- * Copyright 2016-2023 Sweden Connect
+ * Copyright 2016-2024 Sweden Connect
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,18 +15,17 @@
  */
 package se.swedenconnect.opensaml.eidas.metadata;
 
-import javax.xml.namespace.QName;
-
 import org.opensaml.core.xml.AttributeExtensibleXMLObject;
 import org.opensaml.saml.common.SAMLObject;
-
 import se.swedenconnect.opensaml.eidas.common.EidasConstants;
+
+import javax.xml.namespace.QName;
 
 /**
  * Definition of the {@code MsEndpointType} type.
- *
+ * <p>
  * The following schema fragment defines the MsEndpointType complex type:
- *
+ * </p>
  * <pre>
  * {@code
  * <xs:complexType name="MsEndpointType">
@@ -120,7 +119,7 @@ public interface Endpoint extends SAMLObject, AttributeExtensibleXMLObject {
    * suspended. This method is just a shortcut instead of using {@link #getUnknownAttributes()}.
    *
    * @return if the {@code Suspend} attribute has been set to {@code true} this method returns {@code true}, otherwise
-   *           {@code false} 
+   *     {@code false} 
    */
   boolean getSuspend();
 
@@ -137,7 +136,7 @@ public interface Endpoint extends SAMLObject, AttributeExtensibleXMLObject {
    * shortcut instead of using {@link #getUnknownAttributes()}.
    *
    * @return if the {@code HideFromDiscovery} attribute has been set to {@code true} this method returns {@code true},
-   *           otherwise {@code false}
+   *     otherwise {@code false}
    */
   boolean getHideFromDiscovery();
 

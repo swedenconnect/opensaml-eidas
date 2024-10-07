@@ -1,5 +1,5 @@
 /*
- * Copyright 2016-2023 Sweden Connect
+ * Copyright 2016-2024 Sweden Connect
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -69,7 +69,7 @@ public class SchemeInformationImpl extends AbstractXMLObject implements SchemeIn
     if (this.schemeTerritory != null) {
       children.add(this.schemeTerritory);
     }
-    if (children.size() == 0) {
+    if (children.isEmpty()) {
       return null;
     }
     return Collections.unmodifiableList(children);

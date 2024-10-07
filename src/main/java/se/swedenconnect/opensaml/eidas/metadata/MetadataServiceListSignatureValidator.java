@@ -15,12 +15,8 @@
  */
 package se.swedenconnect.opensaml.eidas.metadata;
 
-import java.security.cert.X509Certificate;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Optional;
-
+import net.shibboleth.shared.resolver.CriteriaSet;
+import net.shibboleth.shared.resolver.Criterion;
 import org.opensaml.saml.security.impl.SAMLSignatureProfileValidator;
 import org.opensaml.security.SecurityException;
 import org.opensaml.security.credential.Credential;
@@ -36,9 +32,12 @@ import org.opensaml.xmlsec.signature.support.impl.ExplicitKeySignatureTrustEngin
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import net.shibboleth.shared.resolver.CriteriaSet;
-import net.shibboleth.shared.resolver.Criterion;
-import net.shibboleth.shared.resolver.ResolverException;
+import javax.annotation.Nonnull;
+import java.security.cert.X509Certificate;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Optional;
 
 /**
  * Utility bean for validating signatures on a {@link MetadataServiceList} object.
@@ -50,7 +49,7 @@ public class MetadataServiceListSignatureValidator {
   /** Logging instance. */
   private static final Logger log = LoggerFactory.getLogger(MetadataServiceListSignatureValidator.class);
 
-  /** Validator for checking the a Signature is correct with respect to the standards. */
+  /** Validator for checking that a Signature is correct with respect to the standards. */
   private final SignaturePrevalidator signatureProfileValidator = new SAMLSignatureProfileValidator();
 
   /** The signature trust engine to be used when validating signatures. */
@@ -88,7 +87,7 @@ public class MetadataServiceListSignatureValidator {
       this.signatureProfileValidator.validate(signature);
     }
     catch (final SignatureException e) {
-      log.warn("Signature failed pre-validation: " + e.getMessage());
+      log.warn("Signature failed pre-validation: {}", e.getMessage());
       throw e;
     }
 
@@ -119,8 +118,9 @@ public class MetadataServiceListSignatureValidator {
   private static class StaticCertificateResolver extends AbstractCredentialResolver {
 
     /** {@inheritDoc} */
+    @Nonnull
     @Override
-    public Iterable<Credential> resolve(final CriteriaSet criteriaSet) throws ResolverException {
+    public Iterable<Credential> resolve(final CriteriaSet criteriaSet) {
 
       final List<Credential> certs = new ArrayList<>();
 
@@ -129,7 +129,7 @@ public class MetadataServiceListSignatureValidator {
               .filter(X509CertificateCriterion.class::isInstance)
               .map(X509CertificateCriterion.class::cast)
               .map(X509CertificateCriterion::getCertificate)
-              .forEach(c -> certs.add(c)));
+              .forEach(certs::add));
 
       return Collections.unmodifiableList(certs);
     }

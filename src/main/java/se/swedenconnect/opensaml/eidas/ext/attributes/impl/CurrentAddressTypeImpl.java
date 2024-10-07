@@ -1,5 +1,5 @@
 /*
- * Copyright 2016-2024 Litsec AB
+ * Copyright 2016-2024 Sweden Connect
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,18 +15,16 @@
  */
 package se.swedenconnect.opensaml.eidas.ext.attributes.impl;
 
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
-import java.util.List;
-import java.util.Objects;
-
 import org.opensaml.core.xml.XMLObject;
 import org.opensaml.core.xml.schema.XSString;
-
 import se.swedenconnect.opensaml.eidas.ext.attributes.CurrentAddressType;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+import java.util.List;
+import java.util.Objects;
 
 /**
  * Implementation of {@code CurrentAddressType}.
@@ -59,17 +57,12 @@ public class CurrentAddressTypeImpl extends CurrentAddressStructuredTypeImpl imp
         if (value.trim().isEmpty()) {
           continue;
         }
-        if (sb.length() > 0) {
+        if (!sb.isEmpty()) {
           sb.append(';');
         }
-        try {
-          sb.append(child.getElementQName().getLocalPart())
-              .append('=')
-              .append(URLEncoder.encode(value, "UTF-8").replaceAll("\\+", "%20"));
-        }
-        catch (final UnsupportedEncodingException e) {
-          throw new RuntimeException(e);
-        }
+        sb.append(child.getElementQName().getLocalPart())
+            .append('=')
+            .append(URLEncoder.encode(value, StandardCharsets.UTF_8).replaceAll("\\+", "%20"));
       }
     }
 

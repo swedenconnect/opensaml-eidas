@@ -1,5 +1,5 @@
 /*
- * Copyright 2016-2023 Sweden Connect
+ * Copyright 2016-2024 Sweden Connect
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,20 +15,18 @@
  */
 package se.swedenconnect.opensaml.eidas.metadata;
 
-import java.util.List;
-
-import javax.xml.namespace.QName;
-
 import org.opensaml.core.xml.AttributeExtensibleXMLObject;
 import org.opensaml.saml.common.SAMLObject;
-
 import se.swedenconnect.opensaml.eidas.common.EidasConstants;
+
+import javax.xml.namespace.QName;
+import java.util.List;
 
 /**
  * Definition of the {@code MetadataSchemeEndpointListType} type.
- *
+ * <p>
  * The following schema fragment defines the MetadataSchemeEndpointListType complex type:
- *
+ * </p>
  * <pre>
  * {@code
  * <xs:complexType name="MetadataSchemeEndpointListType">
@@ -89,10 +87,10 @@ public interface MetadataList extends SAMLObject, AttributeExtensibleXMLObject {
 
   /**
    * For the Swedish eIDAS configuration, a flag, {@code Suspend} is used to indicate whether a metadata list for a
-   * specific territory is suspended. This method is just a short cut instead of using {@link #getUnknownAttributes()}.
+   * specific territory is suspended. This method is just a shortcut instead of using {@link #getUnknownAttributes()}.
    *
    * @return if the {@code Suspend} flag has been set to {@code true} this method returns {@code true}, otherwise
-   *           {@code false} 
+   *     {@code false} 
    */
   boolean getSuspend();
 

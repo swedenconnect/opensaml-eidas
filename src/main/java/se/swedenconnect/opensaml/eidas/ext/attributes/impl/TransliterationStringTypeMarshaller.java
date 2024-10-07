@@ -1,5 +1,5 @@
 /*
- * Copyright 2016-2023 Sweden Connect
+ * Copyright 2016-2024 Sweden Connect
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,8 +19,9 @@ import org.opensaml.core.xml.XMLObject;
 import org.opensaml.core.xml.io.MarshallingException;
 import org.opensaml.core.xml.schema.impl.XSStringMarshaller;
 import org.w3c.dom.Element;
-
 import se.swedenconnect.opensaml.eidas.ext.attributes.TransliterationStringType;
+
+import javax.annotation.Nonnull;
 
 /**
  * Marshaller for {@link TransliterationStringType}.
@@ -31,7 +32,8 @@ public class TransliterationStringTypeMarshaller extends XSStringMarshaller {
 
   /** {@inheritDoc} */
   @Override
-  protected void marshallAttributes(final XMLObject xmlObject, final Element domElement) throws MarshallingException {
+  protected void marshallAttributes(@Nonnull final XMLObject xmlObject, @Nonnull final Element domElement)
+      throws MarshallingException {
     final TransliterationStringType tstring = (TransliterationStringType) xmlObject;
 
     if (tstring.getLatinScriptXSBooleanValue() != null) {

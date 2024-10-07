@@ -1,5 +1,5 @@
 /*
- * Copyright 2016-2023 Sweden Connect
+ * Copyright 2016-2024 Sweden Connect
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,6 +15,7 @@
  */
 package se.swedenconnect.opensaml.eidas.config;
 
+import jakarta.annotation.Nonnull;
 import org.opensaml.core.xml.config.AbstractXMLObjectProviderInitializer;
 
 /**
@@ -25,12 +26,13 @@ import org.opensaml.core.xml.config.AbstractXMLObjectProviderInitializer;
 public class XMLObjectProviderInitializer extends AbstractXMLObjectProviderInitializer {
 
   /** Config resources. */
-  private static String[] configs = {
+  private static final String[] configs = {
       "/saml2-eidas-config.xml"
   };
 
   /** {@inheritDoc} */
   @Override
+  @Nonnull
   protected String[] getConfigResources() {
     return configs;
   }

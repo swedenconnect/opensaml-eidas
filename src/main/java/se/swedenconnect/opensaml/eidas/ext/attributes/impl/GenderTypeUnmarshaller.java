@@ -1,5 +1,5 @@
 /*
- * Copyright 2016-2023 Sweden Connect
+ * Copyright 2016-2024 Sweden Connect
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -21,6 +21,8 @@ import org.opensaml.core.xml.io.AbstractXMLObjectUnmarshaller;
 import se.swedenconnect.opensaml.eidas.ext.attributes.GenderType;
 import se.swedenconnect.opensaml.eidas.ext.attributes.GenderTypeEnumeration;
 
+import javax.annotation.Nonnull;
+
 /**
  * Thread-safe unmarshaller for {@link GenderType} objects.
  *
@@ -30,7 +32,7 @@ public class GenderTypeUnmarshaller extends AbstractXMLObjectUnmarshaller {
 
   /** {@inheritDoc} */
   @Override
-  protected void processElementContent(final XMLObject xmlObject, final String elementContent) {
+  protected void processElementContent(@Nonnull final XMLObject xmlObject, @Nonnull final String elementContent) {
     final GenderType gender = (GenderType) xmlObject;
     gender.setGender(new GenderTypeEnumeration(elementContent));
   }

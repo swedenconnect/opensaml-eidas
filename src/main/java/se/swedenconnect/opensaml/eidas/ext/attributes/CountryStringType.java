@@ -17,8 +17,6 @@ package se.swedenconnect.opensaml.eidas.ext.attributes;
 
 import org.opensaml.core.xml.schema.XSString;
 
-import java.util.Locale;
-
 /**
  * Interface for eIDAS attribute values that represent country codes.
  *

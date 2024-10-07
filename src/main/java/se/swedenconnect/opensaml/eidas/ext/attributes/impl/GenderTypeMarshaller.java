@@ -1,5 +1,5 @@
 /*
- * Copyright 2016-2023 Sweden Connect
+ * Copyright 2016-2024 Sweden Connect
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -23,6 +23,8 @@ import org.w3c.dom.Element;
 import net.shibboleth.shared.xml.ElementSupport;
 import se.swedenconnect.opensaml.eidas.ext.attributes.GenderType;
 
+import javax.annotation.Nonnull;
+
 /**
  * A thread safe Marshaller for {@link GenderType} objects.
  *
@@ -32,7 +34,7 @@ public class GenderTypeMarshaller extends AbstractXMLObjectMarshaller {
 
   /** {@inheritDoc} */
   @Override
-  protected void marshallElementContent(final XMLObject xmlObject, final Element domElement)
+  protected void marshallElementContent(@Nonnull final XMLObject xmlObject, @Nonnull final Element domElement)
       throws MarshallingException {
     final GenderType gender = (GenderType) xmlObject;
     if (gender.getGender() != null && gender.getGender().getValue() != null) {

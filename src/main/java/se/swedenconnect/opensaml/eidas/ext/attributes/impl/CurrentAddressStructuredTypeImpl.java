@@ -1,5 +1,5 @@
 /*
- * Copyright 2016-2023 Sweden Connect
+ * Copyright 2016-2024 Sweden Connect
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,18 +15,11 @@
  */
 package se.swedenconnect.opensaml.eidas.ext.attributes.impl;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-
-import javax.xml.namespace.QName;
-
 import org.opensaml.core.xml.AbstractXMLObject;
 import org.opensaml.core.xml.XMLObject;
 import org.opensaml.core.xml.XMLObjectBuilder;
 import org.opensaml.core.xml.config.XMLObjectProviderRegistrySupport;
 import org.opensaml.core.xml.schema.XSString;
-
 import se.swedenconnect.opensaml.eidas.ext.attributes.CurrentAddressStructuredType;
 import se.swedenconnect.opensaml.eidas.ext.attributes.address.AdminunitFirstline;
 import se.swedenconnect.opensaml.eidas.ext.attributes.address.AdminunitSecondline;
@@ -37,6 +30,11 @@ import se.swedenconnect.opensaml.eidas.ext.attributes.address.PoBox;
 import se.swedenconnect.opensaml.eidas.ext.attributes.address.PostCode;
 import se.swedenconnect.opensaml.eidas.ext.attributes.address.PostName;
 import se.swedenconnect.opensaml.eidas.ext.attributes.address.Thoroughfare;
+
+import javax.xml.namespace.QName;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 /**
  * Implementation of {@code CurrentAddressStructuredType}.
@@ -253,7 +251,7 @@ public class CurrentAddressStructuredTypeImpl extends AbstractXMLObject implemen
       elementName = (QName) clazz.getDeclaredField("DEFAULT_ELEMENT_NAME").get(null);
       localName = (String) clazz.getDeclaredField("DEFAULT_ELEMENT_LOCAL_NAME").get(null);
     }
-    catch (NoSuchFieldException | IllegalArgumentException | IllegalAccessException | SecurityException e) {
+    catch (final NoSuchFieldException | IllegalArgumentException | IllegalAccessException | SecurityException e) {
       throw new RuntimeException(e);
     }
     final XMLObjectBuilder<? extends XMLObject> builder =

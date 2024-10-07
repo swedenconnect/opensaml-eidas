@@ -1,5 +1,5 @@
 /*
- * Copyright 2016-2023 Sweden Connect
+ * Copyright 2016-2024 Sweden Connect
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,14 +15,15 @@
  */
 package se.swedenconnect.opensaml.eidas.ext.impl;
 
+import net.shibboleth.shared.primitive.StringSupport;
 import org.opensaml.core.xml.XMLObject;
 import org.opensaml.core.xml.io.UnmarshallingException;
 import org.opensaml.saml.common.AbstractSAMLObjectUnmarshaller;
 import org.w3c.dom.Text;
-
-import net.shibboleth.shared.primitive.StringSupport;
 import se.swedenconnect.opensaml.eidas.ext.SPType;
 import se.swedenconnect.opensaml.eidas.ext.SPTypeEnumeration;
+
+import javax.annotation.Nonnull;
 
 /**
  * A thread-safe Unmarshaller for {@link SPType} objects.
@@ -33,7 +34,8 @@ public class SPTypeUnmarshaller extends AbstractSAMLObjectUnmarshaller {
 
   /** {@inheritDoc} */
   @Override
-  protected void unmarshallTextContent(final XMLObject xmlObject, final Text content) throws UnmarshallingException {
+  protected void unmarshallTextContent(@Nonnull final XMLObject xmlObject, final Text content)
+      throws UnmarshallingException {
 
     final String textContent = StringSupport.trimOrNull(content.getWholeText());
     if (textContent == null) {
@@ -41,9 +43,9 @@ public class SPTypeUnmarshaller extends AbstractSAMLObjectUnmarshaller {
     }
     try {
       final SPTypeEnumeration spTypeEnum = SPTypeEnumeration.parseValue(textContent);
-      SPType.class.cast(xmlObject).setType(spTypeEnum);
+      ((SPType) xmlObject).setType(spTypeEnum);
     }
-    catch (IllegalArgumentException e) {
+    catch (final IllegalArgumentException e) {
       throw new UnmarshallingException(String.format("Invalid SPType - %s is not a valid SPType value", textContent));
     }
   }

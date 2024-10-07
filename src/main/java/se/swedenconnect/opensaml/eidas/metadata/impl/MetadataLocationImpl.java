@@ -15,14 +15,8 @@
  */
 package se.swedenconnect.opensaml.eidas.metadata.impl;
 
-import java.security.cert.CertificateEncodingException;
-import java.security.cert.X509Certificate;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-
-import javax.xml.namespace.QName;
-
+import net.shibboleth.shared.codec.Base64Support;
+import net.shibboleth.shared.codec.EncodingException;
 import org.opensaml.core.xml.AbstractXMLObject;
 import org.opensaml.core.xml.XMLObject;
 import org.opensaml.core.xml.schema.XSBooleanValue;
@@ -33,11 +27,16 @@ import org.opensaml.xmlsec.signature.X509Data;
 import org.opensaml.xmlsec.signature.impl.KeyInfoBuilder;
 import org.opensaml.xmlsec.signature.impl.X509CertificateBuilder;
 import org.opensaml.xmlsec.signature.impl.X509DataBuilder;
-
-import net.shibboleth.shared.codec.Base64Support;
-import net.shibboleth.shared.codec.EncodingException;
 import se.swedenconnect.opensaml.eidas.metadata.Endpoint;
 import se.swedenconnect.opensaml.eidas.metadata.MetadataLocation;
+
+import javax.annotation.Nonnull;
+import javax.xml.namespace.QName;
+import java.security.cert.CertificateEncodingException;
+import java.security.cert.X509Certificate;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 /**
  * Implementation class for {@link MetadataLocation}.
@@ -99,11 +98,11 @@ public class MetadataLocationImpl extends AbstractXMLObject implements MetadataL
   @Override
   public void addX509Certificate(final X509Certificate certificate) {
 
-    String encoding;
+    final String encoding;
     try {
       encoding = Base64Support.encode(certificate.getEncoded(), true);
     }
-    catch (CertificateEncodingException | EncodingException e) {
+    catch (final CertificateEncodingException | EncodingException e) {
       throw new SecurityException("Failed to get certificate encoding", e);
     }
     final org.opensaml.xmlsec.signature.X509Certificate cert = new X509CertificateBuilder().buildObject();
@@ -143,6 +142,7 @@ public class MetadataLocationImpl extends AbstractXMLObject implements MetadataL
     this.unknownAttributes.put(suspendQname, XSBooleanValue.toString(suspendFlag, false));
   }
 
+  @Nonnull
   @Override
   public AttributeMap getUnknownAttributes() {
     return this.unknownAttributes;

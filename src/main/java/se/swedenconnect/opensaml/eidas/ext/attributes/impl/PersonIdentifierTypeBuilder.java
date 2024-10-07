@@ -1,5 +1,5 @@
 /*
- * Copyright 2016-2023 Sweden Connect
+ * Copyright 2016-2024 Sweden Connect
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,6 +19,8 @@ import org.opensaml.core.xml.AbstractXMLObjectBuilder;
 
 import se.swedenconnect.opensaml.eidas.ext.attributes.PersonIdentifierType;
 
+import javax.annotation.Nonnull;
+
 /**
  * Builder for {@link PersonIdentifierType}.
  *
@@ -27,9 +29,10 @@ import se.swedenconnect.opensaml.eidas.ext.attributes.PersonIdentifierType;
 public class PersonIdentifierTypeBuilder extends AbstractXMLObjectBuilder<PersonIdentifierType> {
 
   /** {@inheritDoc} */
+  @Nonnull
   @Override
   public PersonIdentifierType buildObject(
-      final String namespaceURI, final String localName, final String namespacePrefix) {
+      final String namespaceURI, @Nonnull final String localName, final String namespacePrefix) {
     return new PersonIdentifierTypeImpl(namespaceURI, localName, namespacePrefix);
   }
 

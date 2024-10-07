@@ -15,22 +15,20 @@
  */
 package se.swedenconnect.opensaml.eidas.metadata;
 
-import java.security.cert.X509Certificate;
-import java.util.List;
-
-import javax.xml.namespace.QName;
-
 import org.opensaml.core.xml.AttributeExtensibleXMLObject;
 import org.opensaml.saml.common.SAMLObject;
 import org.opensaml.xmlsec.signature.KeyInfo;
-
 import se.swedenconnect.opensaml.eidas.common.EidasConstants;
+
+import javax.xml.namespace.QName;
+import java.security.cert.X509Certificate;
+import java.util.List;
 
 /**
  * Definition of the {@code MetadataLocation} type.
- *
+ * <p>
  * The following schema fragment defines the MetadataLocationType complex type:
- *
+ * </p>
  * <pre>
  * {@code
  *  <xs:complexType name="MetadataLocationType">
@@ -98,7 +96,7 @@ public interface MetadataLocation extends SAMLObject, AttributeExtensibleXMLObje
    */
   @Deprecated(since = "3.0.1", forRemoval = true)
   default KeyInfo getKeyInfo() {
-    return this.getKeyInfos().size() > 0 ? this.getKeyInfos().get(0) : null;
+    return !this.getKeyInfos().isEmpty() ? this.getKeyInfos().get(0) : null;
   }
 
   /**
@@ -134,8 +132,8 @@ public interface MetadataLocation extends SAMLObject, AttributeExtensibleXMLObje
   }
 
   /**
-   * Utility method that creates a {@link KeyInfo} object and assigns the supplied certificate to it before adding
-   * it to {@link #getKeyInfos()}.
+   * Utility method that creates a {@link KeyInfo} object and assigns the supplied certificate to it before adding it to
+   * {@link #getKeyInfos()}.
    *
    * @param certificate certificate the X.509 certificate to assign to a key info
    */
@@ -157,10 +155,10 @@ public interface MetadataLocation extends SAMLObject, AttributeExtensibleXMLObje
 
   /**
    * For the Swedish eIDAS configuration, a flag, {@code Suspend} is used to indicate whether an endpoint has been
-   * suspended. This method is just a short cut instead of using {@link #getUnknownAttributes()}.
+   * suspended. This method is just a shortcut instead of using {@link #getUnknownAttributes()}.
    *
    * @return if the {@code Suspend} flag has been set to {@code true} this method returns {@code true}, otherwise
-   *           {@code false} 
+   *     {@code false} 
    */
   boolean getSuspend();
 
