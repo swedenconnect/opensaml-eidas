@@ -1,5 +1,5 @@
 /*
- * Copyright 2016-2023 Sweden Connect
+ * Copyright 2016-2024 Sweden Connect
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,15 +15,15 @@
  */
 package se.swedenconnect.opensaml.eidas.metadata.impl;
 
-import javax.xml.namespace.QName;
-
 import org.opensaml.core.xml.XMLObject;
 import org.opensaml.core.xml.io.UnmarshallingException;
 import org.opensaml.core.xml.schema.XSString;
 import org.opensaml.core.xml.schema.XSURI;
 import org.opensaml.saml.common.AbstractSAMLObjectUnmarshaller;
-
 import se.swedenconnect.opensaml.eidas.metadata.SchemeInformation;
+
+import javax.annotation.Nonnull;
+import javax.xml.namespace.QName;
 
 /**
  * Unmarshaller for {@link SchemeInformation} objects.
@@ -34,7 +34,8 @@ public class SchemeInformationUnmarshaller extends AbstractSAMLObjectUnmarshalle
 
   /** {@inheritDoc} */
   @Override
-  protected void processChildElement(final XMLObject parentSAMLObject, final XMLObject childSAMLObject)
+  protected void processChildElement(
+      @Nonnull final XMLObject parentSAMLObject, @Nonnull final XMLObject childSAMLObject)
       throws UnmarshallingException {
 
     final SchemeInformation schemeInformation = (SchemeInformation) parentSAMLObject;

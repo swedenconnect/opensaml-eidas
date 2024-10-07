@@ -1,5 +1,5 @@
 /*
- * Copyright 2016-2023 Sweden Connect
+ * Copyright 2016-2024 Sweden Connect
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,6 +19,8 @@ import org.opensaml.saml.common.AbstractSAMLObjectBuilder;
 
 import se.swedenconnect.opensaml.eidas.metadata.DistributionPoints;
 
+import javax.annotation.Nonnull;
+
 /**
  * Builder for {@link DistributionPoints}.
  *
@@ -27,6 +29,7 @@ import se.swedenconnect.opensaml.eidas.metadata.DistributionPoints;
 public class DistributionPointsBuilder extends AbstractSAMLObjectBuilder<DistributionPoints> {
 
   /** {@inheritDoc} */
+  @Nonnull
   @Override
   public DistributionPoints buildObject() {
     return this.buildObject(DistributionPoints.DEFAULT_ELEMENT_NAME.getNamespaceURI(),
@@ -35,9 +38,10 @@ public class DistributionPointsBuilder extends AbstractSAMLObjectBuilder<Distrib
   }
 
   /** {@inheritDoc} */
+  @Nonnull
   @Override
   public DistributionPoints buildObject(
-      final String namespaceURI, final String localName, final String namespacePrefix) {
+      final String namespaceURI, @Nonnull final String localName, final String namespacePrefix) {
     return new DistributionPointsImpl(namespaceURI, localName, namespacePrefix);
   }
 

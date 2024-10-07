@@ -1,5 +1,5 @@
 /*
- * Copyright 2016-2023 Sweden Connect
+ * Copyright 2016-2024 Sweden Connect
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -71,7 +71,7 @@ public enum EidasLoaEnum {
     }
     else if (EidasConstants.EIDAS_LOA_SUBSTANTIAL_NON_NOTIFIED.equals(uri)
         || EidasConstants.EIDAS_LOA_SUBSTANTIAL_NON_NOTIFIED2.equals(
-            uri)) {
+        uri)) {
       return EidasLoaEnum.LOA_SUBSTANTIAL_NON_NOTIFIED;
     }
     else if (EidasConstants.EIDAS_LOA_HIGH_NON_NOTIFIED.equals(uri)
@@ -100,9 +100,9 @@ public enum EidasLoaEnum {
   }
 
   /** The LoA URI. */
-  private String loaUri;
+  private final String loaUri;
 
   /** Sorting order. */
-  private int order;
+  private final int order;
 
 }

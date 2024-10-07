@@ -20,9 +20,10 @@ import org.opensaml.core.xml.io.UnmarshallingException;
 import org.opensaml.saml.common.AbstractSAMLObjectUnmarshaller;
 import org.opensaml.xmlsec.signature.KeyInfo;
 import org.w3c.dom.Attr;
-
 import se.swedenconnect.opensaml.eidas.metadata.Endpoint;
 import se.swedenconnect.opensaml.eidas.metadata.MetadataLocation;
+
+import javax.annotation.Nonnull;
 
 /**
  * Unmarshaller for {@link MetadataLocation}.
@@ -33,7 +34,8 @@ public class MetadataLocationUnmarshaller extends AbstractSAMLObjectUnmarshaller
 
   /** {@inheritDoc} */
   @Override
-  protected void processChildElement(final XMLObject parentSAMLObject, final XMLObject childSAMLObject)
+  protected void processChildElement(
+      @Nonnull final XMLObject parentSAMLObject, @Nonnull final XMLObject childSAMLObject)
       throws UnmarshallingException {
 
     final MetadataLocation mdl = (MetadataLocation) parentSAMLObject;
@@ -51,7 +53,8 @@ public class MetadataLocationUnmarshaller extends AbstractSAMLObjectUnmarshaller
 
   /** {@inheritDoc} */
   @Override
-  protected void processAttribute(final XMLObject samlObject, final Attr attribute) throws UnmarshallingException {
+  protected void processAttribute(@Nonnull final XMLObject samlObject, final Attr attribute)
+      throws UnmarshallingException {
 
     final MetadataLocation mdl = (MetadataLocation) samlObject;
 

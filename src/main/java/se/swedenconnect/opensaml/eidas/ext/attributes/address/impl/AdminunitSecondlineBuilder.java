@@ -1,5 +1,5 @@
 /*
- * Copyright 2016-2023 Litsec AB
+ * Copyright 2016-2024 Sweden Connect
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,8 +15,8 @@
  */
 package se.swedenconnect.opensaml.eidas.ext.attributes.address.impl;
 
+import jakarta.annotation.Nonnull;
 import org.opensaml.core.xml.AbstractXMLObjectBuilder;
-
 import se.swedenconnect.opensaml.eidas.common.EidasConstants;
 import se.swedenconnect.opensaml.eidas.ext.attributes.address.AdminunitSecondline;
 
@@ -27,15 +27,22 @@ import se.swedenconnect.opensaml.eidas.ext.attributes.address.AdminunitSecondlin
  */
 public class AdminunitSecondlineBuilder extends AbstractXMLObjectBuilder<AdminunitSecondline> {
 
-  /** {@inheritDoc} */
+  /**
+   * Builds an {@link AdminunitSecondline} object.
+   *
+   * @return an {@link AdminunitSecondline} object
+   */
+  @Nonnull
   public AdminunitSecondline buildObject() {
-    return buildObject(EidasConstants.EIDAS_NP_NS, AdminunitSecondline.DEFAULT_ELEMENT_LOCAL_NAME,
+    return this.buildObject(EidasConstants.EIDAS_NP_NS, AdminunitSecondline.DEFAULT_ELEMENT_LOCAL_NAME,
         EidasConstants.EIDAS_NP_PREFIX);
   }
 
   /** {@inheritDoc} */
   @Override
-  public AdminunitSecondline buildObject(String namespaceURI, String localName, String namespacePrefix) {
+  @Nonnull
+  public AdminunitSecondline buildObject(
+      final String namespaceURI, @Nonnull final String localName, final String namespacePrefix) {
     return new AdminunitSecondlineImpl(namespaceURI, localName, namespacePrefix);
   }
 

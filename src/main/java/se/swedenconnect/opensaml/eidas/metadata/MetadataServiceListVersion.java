@@ -1,5 +1,5 @@
 /*
- * Copyright 2016-2023 Sweden Connect
+ * Copyright 2016-2024 Sweden Connect
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -69,7 +69,7 @@ public final class MetadataServiceListVersion {
    */
   public static MetadataServiceListVersion valueOf(final String version) {
     final String[] components = version.split("\\.");
-    return valueOf(Integer.valueOf(components[0]), Integer.valueOf(components[1]));
+    return valueOf(Integer.parseInt(components[0]), Integer.parseInt(components[1]));
   }
 
   /**

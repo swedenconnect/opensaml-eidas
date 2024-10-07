@@ -1,5 +1,5 @@
 /*
- * Copyright 2016-2023 Sweden Connect
+ * Copyright 2016-2024 Sweden Connect
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,9 +16,10 @@
 package se.swedenconnect.opensaml.eidas.ext.impl;
 
 import org.opensaml.saml.common.AbstractSAMLObjectBuilder;
-
 import se.swedenconnect.opensaml.eidas.common.EidasConstants;
 import se.swedenconnect.opensaml.eidas.ext.SPType;
+
+import javax.annotation.Nonnull;
 
 /**
  * Builder of {@link SPTypeImpl}.
@@ -34,14 +35,16 @@ public class SPTypeBuilder extends AbstractSAMLObjectBuilder<SPType> {
   }
 
   /** {@inheritDoc} */
+  @Nonnull
   @Override
   public SPType buildObject() {
     return this.buildObject(EidasConstants.EIDAS_NS, SPType.DEFAULT_ELEMENT_LOCAL_NAME, EidasConstants.EIDAS_PREFIX);
   }
 
   /** {@inheritDoc} */
+  @Nonnull
   @Override
-  public SPType buildObject(final String namespaceURI, final String localName, final String namespacePrefix) {
+  public SPType buildObject(final String namespaceURI, @Nonnull final String localName, final String namespacePrefix) {
     return new SPTypeImpl(namespaceURI, localName, namespacePrefix);
   }
 

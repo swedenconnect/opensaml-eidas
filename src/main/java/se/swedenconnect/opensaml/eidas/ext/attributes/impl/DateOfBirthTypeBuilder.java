@@ -1,5 +1,5 @@
 /*
- * Copyright 2016-2023 Sweden Connect
+ * Copyright 2016-2024 Sweden Connect
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,8 +16,9 @@
 package se.swedenconnect.opensaml.eidas.ext.attributes.impl;
 
 import org.opensaml.core.xml.AbstractXMLObjectBuilder;
-
 import se.swedenconnect.opensaml.eidas.ext.attributes.DateOfBirthType;
+
+import javax.annotation.Nonnull;
 
 /**
  * Builder of {@link DateOfBirthType} objects.
@@ -27,8 +28,10 @@ import se.swedenconnect.opensaml.eidas.ext.attributes.DateOfBirthType;
 public class DateOfBirthTypeBuilder extends AbstractXMLObjectBuilder<DateOfBirthType> {
 
   /** {@inheritDoc} */
+  @Nonnull
   @Override
-  public DateOfBirthType buildObject(final String namespaceURI, final String localName, final String namespacePrefix) {
+  public DateOfBirthType buildObject(
+      final String namespaceURI, @Nonnull final String localName, final String namespacePrefix) {
     return new DateOfBirthTypeImpl(namespaceURI, localName, namespacePrefix);
   }
 

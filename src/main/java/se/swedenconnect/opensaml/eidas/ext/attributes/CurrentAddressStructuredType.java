@@ -1,5 +1,5 @@
 /*
- * Copyright 2016-2023 Sweden Connect
+ * Copyright 2016-2024 Sweden Connect
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -171,9 +171,9 @@ public interface CurrentAddressStructuredType extends XMLObject {
   void setAdminunitFirstline(final String adminunitFirstline);
 
   /**
-   * Returns the the admin unit first line element.
+   * Returns the admin unit first line element.
    *
-   * @return the the admin unit first line element or {@code null} if no such element is available
+   * @return the admin unit first line element or {@code null} if no such element is available
    */
   String getAdminunitFirstline();
 
@@ -185,9 +185,9 @@ public interface CurrentAddressStructuredType extends XMLObject {
   void setAdminunitSecondline(final String adminunitSecondline);
 
   /**
-   * Returns the the admin unit second line element.
+   * Returns the admin unit second line element.
    *
-   * @return the the admin unit second line element or {@code null} if no such element is available
+   * @return the admin unit second line element or {@code null} if no such element is available
    */
   String getAdminunitSecondline();
 

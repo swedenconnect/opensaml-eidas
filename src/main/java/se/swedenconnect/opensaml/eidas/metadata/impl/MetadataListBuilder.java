@@ -1,5 +1,5 @@
 /*
- * Copyright 2016-2023 Sweden Connect
+ * Copyright 2016-2024 Sweden Connect
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,8 +16,9 @@
 package se.swedenconnect.opensaml.eidas.metadata.impl;
 
 import org.opensaml.saml.common.AbstractSAMLObjectBuilder;
-
 import se.swedenconnect.opensaml.eidas.metadata.MetadataList;
+
+import javax.annotation.Nonnull;
 
 /**
  * Builder for {@link MetadataList} objects.
@@ -27,6 +28,7 @@ import se.swedenconnect.opensaml.eidas.metadata.MetadataList;
 public class MetadataListBuilder extends AbstractSAMLObjectBuilder<MetadataList> {
 
   /** {@inheritDoc} */
+  @Nonnull
   @Override
   public MetadataList buildObject() {
     return new MetadataListImpl(MetadataList.DEFAULT_ELEMENT_NAME.getNamespaceURI(),
@@ -35,8 +37,10 @@ public class MetadataListBuilder extends AbstractSAMLObjectBuilder<MetadataList>
   }
 
   /** {@inheritDoc} */
+  @Nonnull
   @Override
-  public MetadataList buildObject(final String namespaceURI, final String localName, final String namespacePrefix) {
+  public MetadataList buildObject(
+      final String namespaceURI, @Nonnull final String localName, final String namespacePrefix) {
     return new MetadataListImpl(namespaceURI, localName, namespacePrefix);
   }
 

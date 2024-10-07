@@ -1,5 +1,5 @@
 /*
- * Copyright 2016-2023 Sweden Connect
+ * Copyright 2016-2024 Sweden Connect
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,6 +20,8 @@ import org.opensaml.saml.common.AbstractSAMLObjectUnmarshaller;
 
 import se.swedenconnect.opensaml.eidas.ext.NodeCountry;
 
+import javax.annotation.Nonnull;
+
 /**
  * A thread-safe Unmarshaller for {@link NodeCountry} objects.
  *
@@ -29,7 +31,7 @@ public class NodeCountryUnmarshaller extends AbstractSAMLObjectUnmarshaller {
 
   /** {@inheritDoc} */
   @Override
-  protected void processElementContent(final XMLObject samlObject, final String elementContent) {
+  protected void processElementContent(@Nonnull final XMLObject samlObject, @Nonnull final String elementContent) {
     final NodeCountry nodeCountry = (NodeCountry) samlObject;
     nodeCountry.setNodeCountry(elementContent);
   }

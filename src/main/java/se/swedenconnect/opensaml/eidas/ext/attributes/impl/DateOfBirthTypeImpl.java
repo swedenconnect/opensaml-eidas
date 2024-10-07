@@ -35,7 +35,7 @@ import java.util.Objects;
  */
 public class DateOfBirthTypeImpl extends AbstractXMLObject implements DateOfBirthType {
 
-  /** The birth date. */
+  /** The birthdate. */
   private LocalDate birthDate;
 
   /** The date time formatter to use. */

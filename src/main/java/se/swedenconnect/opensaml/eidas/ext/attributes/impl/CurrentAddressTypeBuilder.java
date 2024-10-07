@@ -1,5 +1,5 @@
 /*
- * Copyright 2016-2023 Sweden Connect
+ * Copyright 2016-2024 Sweden Connect
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,6 +15,7 @@
  */
 package se.swedenconnect.opensaml.eidas.ext.attributes.impl;
 
+import jakarta.annotation.Nonnull;
 import org.opensaml.core.xml.AbstractXMLObjectBuilder;
 
 import se.swedenconnect.opensaml.eidas.ext.attributes.CurrentAddressType;
@@ -28,8 +29,9 @@ public class CurrentAddressTypeBuilder extends AbstractXMLObjectBuilder<CurrentA
 
   /** {@inheritDoc} */
   @Override
+  @Nonnull
   public CurrentAddressType buildObject(
-      final String namespaceURI, final String localName, final String namespacePrefix) {
+      final String namespaceURI, @Nonnull final String localName, final String namespacePrefix) {
     return new CurrentAddressTypeImpl(namespaceURI, localName, namespacePrefix);
   }
 

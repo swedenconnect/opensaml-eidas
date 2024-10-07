@@ -1,5 +1,5 @@
 /*
- * Copyright 2016-2023 Sweden Connect
+ * Copyright 2016-2024 Sweden Connect
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -100,7 +100,7 @@ public interface PersonIdentifierType extends XSString, SAMLObject, EidasAttribu
   /**
    * returns the third part of the uniqueness identifier that is a combination of readable characters. This uniquely
    * identifies the identity asserted in the country of origin but does not necessarily reveal any discernible
-   * correspondence with the subject's actual identifier (for example, username, fiscal number etc).
+   * correspondence with the subject's actual identifier (for example, username, fiscal number etc.).
    *
    * <p>
    * Example: {@code ES</AT/<b>02635542Y</b>}

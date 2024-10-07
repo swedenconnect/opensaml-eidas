@@ -1,5 +1,5 @@
 /*
- * Copyright 2016-2023 Sweden Connect
+ * Copyright 2016-2024 Sweden Connect
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -77,14 +77,14 @@ public interface DateOfBirthType extends XMLObject, EidasAttributeValueType {
   void setDate(final int year, final int month, final int dayOfMonth);
 
   /**
-   * Returns the birth date.
+   * Returns the birthdate.
    *
    * @return the date
    */
   LocalDate getDate();
 
   /**
-   * Formats the birth date according to the formatting rules of xsd:date (YYYY-MM-DD).
+   * Formats the birthdate according to the formatting rules of xsd:date (YYYY-MM-DD).
    *
    * @return a formatted date string
    */

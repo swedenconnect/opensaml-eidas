@@ -1,5 +1,5 @@
 /*
- * Copyright 2016-2023 Sweden Connect
+ * Copyright 2016-2024 Sweden Connect
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,9 +15,9 @@
  */
 package se.swedenconnect.opensaml.eidas.ext.attributes;
 
-import javax.xml.namespace.QName;
-
 import se.swedenconnect.opensaml.eidas.common.EidasConstants;
+
+import javax.xml.namespace.QName;
 
 /**
  * The eIDAS {@code CurrentAddressType}.
@@ -79,9 +79,9 @@ public interface CurrentAddressType extends CurrentAddressStructuredType, EidasA
    * Within the Swedish eID Framework only string-valued attributes are released. It would be possible to simply release
    * the Base64-blob and let attribute consumers decode and parse it, but the "Attribute Specification for the Swedish
    * eID Framework" is a little bit more helpful. It mandates that the eIDAS
-   * {@code http://eidas.europa.eu/attributes/naturalperson/CurrentAddress} attribute is converted into the the
-   * attribute {@code eidasNaturalPersonAddress} (urn:oid:1.2.752.201.3.9). This attribute holds a string value which
-   * contains URL-encoded key-value pairs separated by semicolons.
+   * {@code http://eidas.europa.eu/attributes/naturalperson/CurrentAddress} attribute is converted into the attribute
+   * {@code eidasNaturalPersonAddress} (urn:oid:1.2.752.201.3.9). This attribute holds a string value which contains
+   * URL-encoded key-value pairs separated by semicolons.
    *
    * <p>
    * The XML-snippet below:
@@ -95,7 +95,6 @@ public interface CurrentAddressType extends CurrentAddressStructuredType, EidasA
    *
    * will be represented as:
    * {@code "LocatorDesignator=22;Thoroughfare=Arcacia%20Avenue;PostName=London;PostCode=SW1A%201AA"}.
-   *
    *
    * @return the address represented as a name-value string
    * @see #toStringValue()

@@ -1,5 +1,5 @@
 /*
- * Copyright 2016-2023 Sweden Connect
+ * Copyright 2016-2024 Sweden Connect
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,13 +15,14 @@
  */
 package se.swedenconnect.opensaml.eidas.metadata.impl;
 
+import net.shibboleth.shared.xml.AttributeSupport;
 import org.opensaml.core.xml.XMLObject;
 import org.opensaml.core.xml.io.MarshallingException;
 import org.opensaml.saml.common.AbstractSAMLObjectMarshaller;
 import org.w3c.dom.Element;
-
-import net.shibboleth.shared.xml.AttributeSupport;
 import se.swedenconnect.opensaml.eidas.metadata.MetadataServiceList;
+
+import javax.annotation.Nonnull;
 
 /**
  * A marshaller for {@link MetadataServiceList}.
@@ -32,7 +33,8 @@ public class MetadataServiceListMarshaller extends AbstractSAMLObjectMarshaller 
 
   /** {@inheritDoc} */
   @Override
-  protected void marshallAttributes(final XMLObject samlObject, final Element domElement) throws MarshallingException {
+  protected void marshallAttributes(@Nonnull final XMLObject samlObject, @Nonnull final Element domElement)
+      throws MarshallingException {
 
     final MetadataServiceList mdsl = (MetadataServiceList) samlObject;
 

@@ -1,5 +1,5 @@
 /*
- * Copyright 2016-2023 Sweden Connect
+ * Copyright 2016-2024 Sweden Connect
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,9 +19,10 @@ import org.opensaml.core.xml.XMLObject;
 import org.opensaml.core.xml.io.UnmarshallingException;
 import org.opensaml.saml.common.AbstractSAMLObjectUnmarshaller;
 import org.w3c.dom.Attr;
-
 import se.swedenconnect.opensaml.eidas.metadata.MetadataList;
 import se.swedenconnect.opensaml.eidas.metadata.MetadataLocation;
+
+import javax.annotation.Nonnull;
 
 /**
  * A thread safe unmarshaller for {@link MetadataList}.
@@ -32,7 +33,8 @@ public class MetadataListUnmarshaller extends AbstractSAMLObjectUnmarshaller {
 
   /** {@inheritDoc} */
   @Override
-  protected void processChildElement(final XMLObject parentSAMLObject, final XMLObject childSAMLObject)
+  protected void processChildElement(
+      @Nonnull final XMLObject parentSAMLObject, @Nonnull final XMLObject childSAMLObject)
       throws UnmarshallingException {
     final MetadataList mdl = (MetadataList) parentSAMLObject;
 
@@ -46,7 +48,8 @@ public class MetadataListUnmarshaller extends AbstractSAMLObjectUnmarshaller {
 
   /** {@inheritDoc} */
   @Override
-  protected void processAttribute(final XMLObject samlObject, final Attr attribute) throws UnmarshallingException {
+  protected void processAttribute(@Nonnull final XMLObject samlObject, final Attr attribute)
+      throws UnmarshallingException {
 
     final MetadataList mdl = (MetadataList) samlObject;
 

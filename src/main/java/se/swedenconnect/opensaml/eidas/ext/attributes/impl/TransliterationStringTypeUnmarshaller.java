@@ -1,5 +1,5 @@
 /*
- * Copyright 2016-2023 Sweden Connect
+ * Copyright 2016-2024 Sweden Connect
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,9 +19,10 @@ import org.opensaml.core.xml.XMLObject;
 import org.opensaml.core.xml.io.UnmarshallingException;
 import org.opensaml.core.xml.schema.impl.XSStringUnmarshaller;
 import org.w3c.dom.Attr;
-
 import se.swedenconnect.opensaml.eidas.common.EidasConstants;
 import se.swedenconnect.opensaml.eidas.ext.attributes.TransliterationStringType;
+
+import javax.annotation.Nonnull;
 
 /**
  * Unmarshaller for {@link TransliterationStringType}.
@@ -32,12 +33,13 @@ public class TransliterationStringTypeUnmarshaller extends XSStringUnmarshaller 
 
   /** {@inheritDoc} */
   @Override
-  protected void processAttribute(final XMLObject xmlObject, final Attr attribute) throws UnmarshallingException {
+  protected void processAttribute(@Nonnull final XMLObject xmlObject, final Attr attribute)
+      throws UnmarshallingException {
     final TransliterationStringType tstring = (TransliterationStringType) xmlObject;
 
     if (attribute.getLocalName().equals(TransliterationStringType.LATIN_SCRIPT_ATTRIB_NAME)
         && (attribute.getNamespaceURI() == null
-            || EidasConstants.EIDAS_NP_NS.equals(attribute.getNamespaceURI()))) {
+        || EidasConstants.EIDAS_NP_NS.equals(attribute.getNamespaceURI()))) {
       tstring.setLatinScript(Boolean.parseBoolean(attribute.getValue()));
     }
   }

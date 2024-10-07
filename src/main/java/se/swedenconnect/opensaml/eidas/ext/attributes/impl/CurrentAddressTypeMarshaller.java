@@ -1,5 +1,5 @@
 /*
- * Copyright 2016-2023 Sweden Connect
+ * Copyright 2016-2024 Sweden Connect
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,20 +15,21 @@
  */
 package se.swedenconnect.opensaml.eidas.ext.attributes.impl;
 
-import java.io.UnsupportedEncodingException;
-import java.util.List;
-import java.util.Optional;
-
+import net.shibboleth.shared.codec.Base64Support;
+import net.shibboleth.shared.codec.EncodingException;
+import net.shibboleth.shared.xml.ElementSupport;
+import org.opensaml.core.xml.Namespace;
 import org.opensaml.core.xml.XMLObject;
 import org.opensaml.core.xml.io.AbstractXMLObjectMarshaller;
 import org.opensaml.core.xml.io.MarshallingException;
 import org.opensaml.core.xml.schema.XSString;
 import org.w3c.dom.Element;
-
-import net.shibboleth.shared.codec.Base64Support;
-import net.shibboleth.shared.codec.EncodingException;
-import net.shibboleth.shared.xml.ElementSupport;
 import se.swedenconnect.opensaml.eidas.ext.attributes.CurrentAddressType;
+
+import javax.annotation.Nonnull;
+import java.nio.charset.StandardCharsets;
+import java.util.List;
+import java.util.Optional;
 
 /**
  * The marshaller for {@code CurrentAddressType}.
@@ -51,7 +52,7 @@ public class CurrentAddressTypeMarshaller extends AbstractXMLObjectMarshaller {
    * {@link #marshallElementContent(XMLObject, Element)} do the work.
    */
   @Override
-  protected void marshallChildElements(final XMLObject xmlObject, final Element domElement)
+  protected void marshallChildElements(@Nonnull final XMLObject xmlObject, @Nonnull final Element domElement)
       throws MarshallingException {
   }
 
@@ -60,7 +61,7 @@ public class CurrentAddressTypeMarshaller extends AbstractXMLObjectMarshaller {
    * {@code CurrentAddressStructuredType}. So ... we have to get there by iterating over our child elements.
    */
   @Override
-  protected void marshallElementContent(final XMLObject xmlObject, final Element domElement)
+  protected void marshallElementContent(final XMLObject xmlObject, @Nonnull final Element domElement)
       throws MarshallingException {
 
     // Find out if the our namespace already has been defined, and if so, get the prefix.
@@ -70,22 +71,21 @@ public class CurrentAddressTypeMarshaller extends AbstractXMLObjectMarshaller {
         .getNamespaces()
         .stream()
         .filter(n -> namespace.equals(n.getNamespaceURI()))
-        .map(n -> n.getNamespacePrefix())
+        .map(Namespace::getNamespacePrefix)
         .findFirst();
     final String prefix = _prefix.isPresent() ? _prefix.get() : CurrentAddressType.TYPE_NAME.getPrefix();
 
     final StringBuilder sb = new StringBuilder();
 
     final List<XMLObject> childXMLObjects = xmlObject.getOrderedChildren();
-    if (childXMLObjects != null && childXMLObjects.size() > 0) {
+    if (childXMLObjects != null && !childXMLObjects.isEmpty()) {
       for (final XMLObject childXMLObject : childXMLObjects) {
         if (childXMLObject == null) {
           continue;
         }
-        if (!(childXMLObject instanceof XSString)) {
+        if (!(childXMLObject instanceof final XSString childString)) {
           throw new MarshallingException("Unexpected type of child element - " + childXMLObject.getClass().getName());
         }
-        final XSString childString = (XSString) childXMLObject;
         if (childString.getValue() == null) {
           continue;
         }
@@ -93,13 +93,13 @@ public class CurrentAddressTypeMarshaller extends AbstractXMLObjectMarshaller {
         sb.append(String.format("<%s:%s>%s</%s:%s>", prefix, localPart, childString.getValue(), prefix, localPart));
       }
     }
-    if (sb.length() > 0) {
+    if (!sb.isEmpty()) {
       try {
-        final byte[] bytes = sb.toString().getBytes("UTF-8");
+        final byte[] bytes = sb.toString().getBytes(StandardCharsets.UTF_8);
         final String base64String = Base64Support.encode(bytes, true);
         ElementSupport.appendTextContent(domElement, base64String);
       }
-      catch (UnsupportedEncodingException | EncodingException e) {
+      catch (final EncodingException e) {
         throw new MarshallingException(e);
       }
     }

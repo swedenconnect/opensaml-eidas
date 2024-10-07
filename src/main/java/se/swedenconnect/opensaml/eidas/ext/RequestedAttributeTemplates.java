@@ -1,5 +1,5 @@
 /*
- * Copyright 2016-2023 Sweden Connect
+ * Copyright 2016-2024 Sweden Connect
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -123,7 +123,7 @@ public class RequestedAttributeTemplates {
         XMLObjectProviderRegistrySupport.getBuilderFactory().getBuilder(
             RequestedAttribute.DEFAULT_ELEMENT_NAME);
     final Object object = builder.buildObject(RequestedAttribute.DEFAULT_ELEMENT_NAME);
-    final RequestedAttribute ra = RequestedAttribute.class.cast(object);
+    final RequestedAttribute ra = (RequestedAttribute) object;
     ra.setName(name);
     ra.setFriendlyName(friendlyName);
     ra.setNameFormat(nameFormat != null ? nameFormat : Attribute.URI_REFERENCE);

@@ -1,5 +1,5 @@
 /*
- * Copyright 2016-2023 Sweden Connect
+ * Copyright 2016-2024 Sweden Connect
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -53,7 +53,7 @@ public class EidasConstants {
    * Included for backwards compatibility and interoperability. Some applications used this URI for not-notified low
    * before the URI was fully determined.
    */
-  public static final String EIDAS_LOA_LOW_NON_NOTIFIED2 = "http://eidas.europa.eu/LoA/NotNotified/low";;
+  public static final String EIDAS_LOA_LOW_NON_NOTIFIED2 = "http://eidas.europa.eu/LoA/NotNotified/low";
 
   /** The Authentication Context URI for the "Substantial" Level of Assurance. */
   public static final String EIDAS_LOA_SUBSTANTIAL = "http://eidas.europa.eu/LoA/substantial";
@@ -89,13 +89,15 @@ public class EidasConstants {
    * Attribute name for the entity attribute representing an eIDAS protocol version, as described in section 3.4 of the
    * "eIDAS Message Format" specification.
    */
-  public static final String EIDAS_PROTOCOL_VERSION_ATTRIBUTE_NAME = "http://eidas.europa.eu/entity-attributes/protocol-version";
+  public static final String EIDAS_PROTOCOL_VERSION_ATTRIBUTE_NAME =
+      "http://eidas.europa.eu/entity-attributes/protocol-version";
 
   /**
    * Attribute name for the entity attribute representing an eIDAS application identifier, as described in section 3.4
    * of the "eIDAS Message Format" specification.
    */
-  public static final String EIDAS_APPLICATION_IDENTIFIER_ATTRIBUTE_NAME = "http://eidas.europa.eu/entity-attributes/application-identifier";
+  public static final String EIDAS_APPLICATION_IDENTIFIER_ATTRIBUTE_NAME =
+      "http://eidas.europa.eu/entity-attributes/application-identifier";
 
   private EidasConstants() {
   }
