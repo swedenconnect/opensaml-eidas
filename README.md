@@ -2,7 +2,7 @@
 
 # opensaml-eidas
 
-[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0) [![Maven Central](https://img.shields.io/maven-central/v/se.swedenconnect.opensaml/opensaml-eidas.svg)]
+[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0) ![Maven Central](https://img.shields.io/maven-central/v/se.swedenconnect.opensaml/opensaml-eidas.svg)
 
 OpenSAML extensions for the eIDAS Framework.
 
