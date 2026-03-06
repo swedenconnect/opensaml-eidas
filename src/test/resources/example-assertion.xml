@@ -1,7 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<saml2:Assertion ID="_47482789069732322d02d825c9a2fafa" IssueInstant="2015-04-30T19:27:20.159Z" Version="2.0" 
+<!--
+  ~ Copyright 2016-2026 Sweden Connect
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~     http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+<saml2:Assertion ID="_47482789069732322d02d825c9a2fafa" IssueInstant="2015-04-30T19:27:20.159Z" Version="2.0"
   xmlns:saml2="urn:oasis:names:tc:SAML:2.0:assertion"
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xmlns:eidas="http://eidas.europa.eu/attributes/naturalperson">
   <saml2:Issuer Format="urn:oasis:names:tc:SAML:2.0:nameid-format:entity">https://eidas-service.eu</saml2:Issuer>
   <saml2:Subject>
@@ -21,27 +36,27 @@
     </saml2:AuthnContext>
   </saml2:AuthnStatement>
   <saml2:AttributeStatement>
-    <saml2:Attribute 
-      FriendlyName="PersonIdentifier" 
+    <saml2:Attribute
+      FriendlyName="PersonIdentifier"
       Name="http://eidas.europa.eu/attributes/naturalperson/PersonIdentifier"
       NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:uri">
       <saml2:AttributeValue xsi:type="eidas: PersonIdentifierType">ES/AT/02635542Y</saml2:AttributeValue>
     </saml2:Attribute>
-    <saml2:Attribute 
-      FriendlyName="FamilyName" 
+    <saml2:Attribute
+      FriendlyName="FamilyName"
       Name="http://eidas.europa.eu/attributes/naturalperson/CurrentFamilyName"
       NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:uri">
       <saml2:AttributeValue eidas:LatinScript="false" xsi:type="eidas:CurrentFamilyNameType">Ωνάσης</saml2:AttributeValue>
       <saml2:AttributeValue xsi:type="eidas:CurrentFamilyNameType">Onasis</saml2:AttributeValue>
     </saml2:Attribute>
-    <saml2:Attribute 
-      FriendlyName="FirstName" 
+    <saml2:Attribute
+      FriendlyName="FirstName"
       Name="http://eidas.europa.eu/attributes/naturalperson/CurrentGivenName"
       NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:uri">
       <saml2:AttributeValue xsi:type="eidas: CurrentGivenNameType">Sarah</saml2:AttributeValue>
     </saml2:Attribute>
-    <saml2:Attribute 
-      FriendlyName="DateOfBirth" 
+    <saml2:Attribute
+      FriendlyName="DateOfBirth"
       Name="http://eidas.europa.eu/attributes/naturalperson/DateOfBirth"
       NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:uri">
       <saml2:AttributeValue xsi:type="eidas:DateOfBirthType">1970-05-28</saml2:AttributeValue>
