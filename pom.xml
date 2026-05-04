@@ -7,7 +7,7 @@
   <groupId>se.swedenconnect.opensaml</groupId>
   <artifactId>opensaml-eidas</artifactId>
   <packaging>jar</packaging>
-  <version>3.3.1</version>
+  <version>3.3.2-SNAPSHOT</version>
 
   <name>Sweden Connect :: eIDAS :: OpenSAML 5.X extensions</name>
   <description>OpenSAML 5.X extension library for the eIDAS Framework</description>
@@ -222,6 +222,9 @@
       <testResource>
         <directory>src/test/resources</directory>
         <filtering>false</filtering>
+        <excludes>
+          <exclude>**/*.properties</exclude>
+        </excludes>
       </testResource>
     </testResources>
 
