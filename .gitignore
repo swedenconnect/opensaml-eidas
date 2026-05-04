@@ -5,7 +5,6 @@
 
 # Intelij
 *.iml
-.idea
 out
 
 # Package Files #

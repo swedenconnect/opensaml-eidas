@@ -99,7 +99,7 @@ public class AttributeUtils {
    *
    * @param <T> the type
    * @param schemaType the schema type that should be assigned to the attribute value, i.e.,
-   *          {@code xsi:type="eidas:CurrentFamilyNameType"}
+   *     {@code xsi:type="eidas:CurrentFamilyNameType"}
    * @param clazz the type of the attribute value
    * @return the attribute value
    * @see #createAttributeValueObject(Class)

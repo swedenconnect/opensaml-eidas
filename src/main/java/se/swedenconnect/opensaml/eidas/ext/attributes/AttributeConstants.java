@@ -41,6 +41,12 @@ public class AttributeConstants {
   public static final String REPRESENTATIVE_LEGAL_PERSON_PREFIX =
       "http://eidas.europa.eu/attributes/legalperson/representative/";
 
+  /** Attribute name prefix for eJustice natural person attributes. */
+  public static final String EJUSTICE_NATURAL_PERSON_PREFIX = "http://e-justice.europa.eu/attributes/naturalperson/";
+
+  /** Attribute name prefix for eJustice legal person attributes. */
+  public static final String EJUSTICE_LEGAL_PERSON_PREFIX = "http://e-justice.europa.eu/attributes/legalperson/";
+
   /** Attribute name for PersonIdentifier. */
   public static final String EIDAS_PERSON_IDENTIFIER_ATTRIBUTE_NAME = NATURAL_PERSON_PREFIX + "PersonIdentifier";
 
@@ -184,5 +190,19 @@ public class AttributeConstants {
 
   /** Representative PlaceOfBirth friendly name. */
   public static final String EIDAS_REPRESENTATIVE_PLACE_OF_BIRTH_ATTRIBUTE_FRIENDLY_NAME = "RepresentativePlaceOfBirth";
+
+  /** Attribute name for eJusticeNaturalPersonRole. */
+  public static final String EJUSTICE_NATURAL_PERSON_ROLE_ATTRIBUTE_NAME =
+      EJUSTICE_NATURAL_PERSON_PREFIX + "eJusticeNaturalPersonRole";
+
+  /** Friendly name for eJusticeNaturalPersonRole. */
+  public static final String EJUSTICE_NATURAL_PERSON_ROLE_ATTRIBUTE_FRIENDLY_NAME = "eJusticeNaturalPersonRole";
+
+  /** Attribute name for eJusticeLegalPersonRole. */
+  public static final String EJUSTICE_LEGAL_PERSON_ROLE_ATTRIBUTE_NAME =
+      EJUSTICE_NATURAL_PERSON_PREFIX + "eJusticeLegalPersonRole";
+
+  /** Friendly name for eJusticeLegalPersonRole. */
+  public static final String EJUSTICE_LEGAL_PERSON_ROLE_ATTRIBUTE_FRIENDLY_NAME = "eJusticeLegalPersonRole";
 
 }

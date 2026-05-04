@@ -108,12 +108,26 @@ public class RequestedAttributeTemplates {
   }
 
   /**
+   * Creates a {@code RequestedAttribute} object for the eJusticeNaturalPersonRole attribute.
+   *
+   * @param isRequired flag to tell whether the attribute is required
+   * @param includeFriendlyName flag that tells whether the friendly name should be included
+   * @return a {@code RequestedAttribute} object representing the eJusticeNaturalPersonRole attribute
+   */
+  public static RequestedAttribute eJusticeNaturalPersonRole(final Boolean isRequired,
+      final boolean includeFriendlyName) {
+    return create(AttributeConstants.EJUSTICE_NATURAL_PERSON_ROLE_ATTRIBUTE_NAME,
+        includeFriendlyName ? AttributeConstants.EJUSTICE_NATURAL_PERSON_ROLE_ATTRIBUTE_FRIENDLY_NAME : null,
+        Attribute.URI_REFERENCE, isRequired);
+  }
+
+  /**
    * Creates a {@code RequestedAttribute} object for the given attribute name.
    *
    * @param name the attribute name
    * @param friendlyName the attribute friendly name (optional)
-   * @param nameFormat the name format (defaults to {@code urn:oasis:names:tc:SAML:2.0:attrname-format:uri} if the value
-   *          is not supplied)
+   * @param nameFormat the name format (defaults to {@code urn:oasis:names:tc:SAML:2.0:attrname-format:uri} if the
+   *     value is not supplied)
    * @param isRequired flag to tell whether the attribute is required
    * @return a {@code RequestedAttribute} object
    */
