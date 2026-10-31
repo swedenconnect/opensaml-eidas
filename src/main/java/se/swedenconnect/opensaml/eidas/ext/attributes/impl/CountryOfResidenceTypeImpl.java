@@ -17,7 +17,7 @@ package se.swedenconnect.opensaml.eidas.ext.attributes.impl;
 
 import se.swedenconnect.opensaml.eidas.ext.attributes.CountryOfResidenceType;
 
-import javax.annotation.Nonnull;
+import jakarta.annotation.Nonnull;
 
 /**
  * Implementation class for {@link CountryOfResidenceType}.

@@ -21,7 +21,7 @@ import org.opensaml.saml.common.AbstractSAMLObjectUnmarshaller;
 import org.w3c.dom.Attr;
 import se.swedenconnect.opensaml.eidas.metadata.Endpoint;
 
-import javax.annotation.Nonnull;
+import jakarta.annotation.Nonnull;
 
 /**
  * Unmarshaller for {@link Endpoint}.

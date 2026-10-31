@@ -30,7 +30,7 @@ import org.opensaml.xmlsec.signature.impl.X509DataBuilder;
 import se.swedenconnect.opensaml.eidas.metadata.Endpoint;
 import se.swedenconnect.opensaml.eidas.metadata.MetadataLocation;
 
-import javax.annotation.Nonnull;
+import jakarta.annotation.Nonnull;
 import javax.xml.namespace.QName;
 import java.security.cert.CertificateEncodingException;
 import java.security.cert.X509Certificate;

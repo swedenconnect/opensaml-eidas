@@ -23,7 +23,7 @@ import org.w3c.dom.Element;
 import net.shibboleth.shared.xml.ElementSupport;
 import se.swedenconnect.opensaml.eidas.ext.attributes.DateOfBirthType;
 
-import javax.annotation.Nonnull;
+import jakarta.annotation.Nonnull;
 
 /**
  * Thread-safe marshaller of {@link DateOfBirthType} objects.

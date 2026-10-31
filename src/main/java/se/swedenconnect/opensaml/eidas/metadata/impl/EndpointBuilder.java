@@ -18,7 +18,7 @@ package se.swedenconnect.opensaml.eidas.metadata.impl;
 import org.opensaml.saml.common.AbstractSAMLObjectBuilder;
 import se.swedenconnect.opensaml.eidas.metadata.Endpoint;
 
-import javax.annotation.Nonnull;
+import jakarta.annotation.Nonnull;
 
 /**
  * Builder for {@link Endpoint} objects.

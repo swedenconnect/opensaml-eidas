@@ -19,7 +19,7 @@ import org.opensaml.core.xml.AbstractXMLObjectBuilder;
 
 import se.swedenconnect.opensaml.eidas.ext.attributes.PersonIdentifierType;
 
-import javax.annotation.Nonnull;
+import jakarta.annotation.Nonnull;
 
 /**
  * Builder for {@link PersonIdentifierType}.
