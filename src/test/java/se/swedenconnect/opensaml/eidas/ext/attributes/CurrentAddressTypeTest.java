@@ -16,6 +16,7 @@
 package se.swedenconnect.opensaml.eidas.ext.attributes;
 
 import java.io.ByteArrayInputStream;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 
 import javax.xml.namespace.QName;
@@ -236,6 +237,32 @@ public class CurrentAddressTypeTest extends OpenSAMLTestBase {
     Assertions.assertEquals("Arnoltice u Děčína", address.getPostName());
     Assertions.assertEquals("40714", address.getPostCode());
     Assertions.assertEquals("Arnoltice", address.getCvaddressArea());
+  }
+
+  /**
+   * Tests that a namespace prefix declared on the attribute value has precedence over the same prefix declared on an
+   * ancestor element.
+   *
+   * @throws Exception for errors
+   */
+  @Test
+  public void testUnmarshallRedeclaredPrefix() throws Exception {
+    final String base64 = Base64Support.encode(
+        "<x:PostCode>12345</x:PostCode>".getBytes(StandardCharsets.UTF_8), false);
+    final String xml =
+        "<saml:Attribute xmlns:saml=\"urn:oasis:names:tc:SAML:2.0:assertion\" xmlns:x=\"http://www.example.com/other\""
+            + " Name=\"http://eidas.europa.eu/attributes/naturalperson/CurrentAddress\">"
+            + "<saml:AttributeValue xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\""
+            + " xmlns:x=\"http://eidas.europa.eu/attributes/naturalperson\" xsi:type=\"x:CurrentAddressType\">"
+            + base64 + "</saml:AttributeValue></saml:Attribute>";
+
+    final Document doc = XMLObjectProviderRegistrySupport.getParserPool()
+        .parse(new ByteArrayInputStream(xml.getBytes(StandardCharsets.UTF_8)));
+    final Attribute attribute = (Attribute) XMLObjectSupport.getUnmarshaller(Attribute.DEFAULT_ELEMENT_NAME)
+        .unmarshall(doc.getDocumentElement());
+
+    final CurrentAddressType address = (CurrentAddressType) attribute.getAttributeValues().get(0);
+    Assertions.assertEquals("12345", address.getPostCode());
   }
 
   /**
