@@ -21,7 +21,7 @@ import org.opensaml.core.xml.schema.impl.XSStringMarshaller;
 import org.w3c.dom.Element;
 import se.swedenconnect.opensaml.eidas.ext.attributes.TransliterationStringType;
 
-import javax.annotation.Nonnull;
+import jakarta.annotation.Nonnull;
 
 /**
  * Marshaller for {@link TransliterationStringType}.

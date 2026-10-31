@@ -21,7 +21,7 @@ import org.opensaml.saml.common.AbstractSAMLObjectMarshaller;
 import org.w3c.dom.Element;
 import se.swedenconnect.opensaml.eidas.metadata.MetadataList;
 
-import javax.annotation.Nonnull;
+import jakarta.annotation.Nonnull;
 
 /**
  * A marshaller for {@link MetadataList}.

@@ -22,7 +22,7 @@ import org.w3c.dom.Attr;
 import se.swedenconnect.opensaml.eidas.common.EidasConstants;
 import se.swedenconnect.opensaml.eidas.ext.attributes.TransliterationStringType;
 
-import javax.annotation.Nonnull;
+import jakarta.annotation.Nonnull;
 
 /**
  * Unmarshaller for {@link TransliterationStringType}.

@@ -22,7 +22,7 @@ import org.opensaml.core.xml.io.AbstractXMLObjectUnmarshaller;
 
 import se.swedenconnect.opensaml.eidas.ext.attributes.DateOfBirthType;
 
-import javax.annotation.Nonnull;
+import jakarta.annotation.Nonnull;
 
 /**
  * Thread-safe unmarshaller for {@link DateOfBirthType} objects.

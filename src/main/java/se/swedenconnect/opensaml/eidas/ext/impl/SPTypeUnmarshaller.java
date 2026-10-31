@@ -23,7 +23,7 @@ import org.w3c.dom.Text;
 import se.swedenconnect.opensaml.eidas.ext.SPType;
 import se.swedenconnect.opensaml.eidas.ext.SPTypeEnumeration;
 
-import javax.annotation.Nonnull;
+import jakarta.annotation.Nonnull;
 
 /**
  * A thread-safe Unmarshaller for {@link SPType} objects.

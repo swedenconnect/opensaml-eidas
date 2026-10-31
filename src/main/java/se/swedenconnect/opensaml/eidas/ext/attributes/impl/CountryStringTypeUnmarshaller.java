@@ -19,7 +19,7 @@ import org.opensaml.core.xml.XMLObject;
 import org.opensaml.core.xml.schema.impl.XSStringUnmarshaller;
 import se.swedenconnect.opensaml.eidas.ext.attributes.CountryStringType;
 
-import javax.annotation.Nonnull;
+import jakarta.annotation.Nonnull;
 
 /**
  * Unmarshaller for {@link CountryStringType}.

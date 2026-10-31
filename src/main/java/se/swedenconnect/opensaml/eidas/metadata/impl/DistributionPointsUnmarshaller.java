@@ -21,7 +21,7 @@ import org.opensaml.saml.common.AbstractSAMLObjectUnmarshaller;
 import se.swedenconnect.opensaml.eidas.metadata.DistributionPoint;
 import se.swedenconnect.opensaml.eidas.metadata.DistributionPoints;
 
-import javax.annotation.Nonnull;
+import jakarta.annotation.Nonnull;
 
 /**
  * A thread safe unmarshaller for {@link DistributionPoints}.

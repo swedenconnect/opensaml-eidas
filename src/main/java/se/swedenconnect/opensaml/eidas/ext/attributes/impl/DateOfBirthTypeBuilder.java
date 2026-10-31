@@ -18,7 +18,7 @@ package se.swedenconnect.opensaml.eidas.ext.attributes.impl;
 import org.opensaml.core.xml.AbstractXMLObjectBuilder;
 import se.swedenconnect.opensaml.eidas.ext.attributes.DateOfBirthType;
 
-import javax.annotation.Nonnull;
+import jakarta.annotation.Nonnull;
 
 /**
  * Builder of {@link DateOfBirthType} objects.

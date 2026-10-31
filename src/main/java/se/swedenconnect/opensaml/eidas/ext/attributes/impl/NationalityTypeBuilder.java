@@ -18,8 +18,8 @@ package se.swedenconnect.opensaml.eidas.ext.attributes.impl;
 import org.opensaml.core.xml.AbstractXMLObjectBuilder;
 import se.swedenconnect.opensaml.eidas.ext.attributes.NationalityType;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
 
 /**
  * Builder for {@link NationalityType}.

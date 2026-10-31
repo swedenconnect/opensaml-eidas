@@ -28,7 +28,7 @@ import se.swedenconnect.opensaml.eidas.metadata.MetadataServiceList;
 import se.swedenconnect.opensaml.eidas.metadata.MetadataServiceListVersion;
 import se.swedenconnect.opensaml.eidas.metadata.SchemeInformation;
 
-import javax.annotation.Nonnull;
+import jakarta.annotation.Nonnull;
 
 /**
  * A thread safe unmarshaller for {@link MetadataServiceList}.
