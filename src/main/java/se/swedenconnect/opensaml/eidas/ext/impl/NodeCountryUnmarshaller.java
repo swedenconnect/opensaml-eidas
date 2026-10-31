@@ -20,7 +20,7 @@ import org.opensaml.saml.common.AbstractSAMLObjectUnmarshaller;
 
 import se.swedenconnect.opensaml.eidas.ext.NodeCountry;
 
-import javax.annotation.Nonnull;
+import jakarta.annotation.Nonnull;
 
 /**
  * A thread-safe Unmarshaller for {@link NodeCountry} objects.

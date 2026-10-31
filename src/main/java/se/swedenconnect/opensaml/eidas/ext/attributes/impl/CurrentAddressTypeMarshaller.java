@@ -26,7 +26,7 @@ import org.opensaml.core.xml.schema.XSString;
 import org.w3c.dom.Element;
 import se.swedenconnect.opensaml.eidas.ext.attributes.CurrentAddressType;
 
-import javax.annotation.Nonnull;
+import jakarta.annotation.Nonnull;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.Optional;

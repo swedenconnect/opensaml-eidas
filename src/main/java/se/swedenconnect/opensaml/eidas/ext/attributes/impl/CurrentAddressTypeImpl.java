@@ -28,8 +28,8 @@ import se.swedenconnect.opensaml.eidas.ext.attributes.address.PostCode;
 import se.swedenconnect.opensaml.eidas.ext.attributes.address.PostName;
 import se.swedenconnect.opensaml.eidas.ext.attributes.address.Thoroughfare;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;

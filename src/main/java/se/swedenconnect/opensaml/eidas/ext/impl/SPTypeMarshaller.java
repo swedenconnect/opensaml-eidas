@@ -23,7 +23,7 @@ import org.w3c.dom.Element;
 import net.shibboleth.shared.xml.ElementSupport;
 import se.swedenconnect.opensaml.eidas.ext.SPType;
 
-import javax.annotation.Nonnull;
+import jakarta.annotation.Nonnull;
 
 /**
  * A thread safe Marshaller for {@link SPType} objects.

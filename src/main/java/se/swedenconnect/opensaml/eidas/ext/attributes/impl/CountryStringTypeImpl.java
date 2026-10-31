@@ -18,8 +18,8 @@ package se.swedenconnect.opensaml.eidas.ext.attributes.impl;
 import org.opensaml.core.xml.schema.impl.XSStringImpl;
 import se.swedenconnect.opensaml.eidas.ext.attributes.CountryStringType;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
 import java.util.Objects;
 
 /**

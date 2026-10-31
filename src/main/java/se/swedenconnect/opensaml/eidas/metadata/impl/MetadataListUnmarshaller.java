@@ -22,7 +22,7 @@ import org.w3c.dom.Attr;
 import se.swedenconnect.opensaml.eidas.metadata.MetadataList;
 import se.swedenconnect.opensaml.eidas.metadata.MetadataLocation;
 
-import javax.annotation.Nonnull;
+import jakarta.annotation.Nonnull;
 
 /**
  * A thread safe unmarshaller for {@link MetadataList}.

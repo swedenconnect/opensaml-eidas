@@ -22,7 +22,7 @@ import org.opensaml.core.xml.schema.XSURI;
 import org.opensaml.saml.common.AbstractSAMLObjectUnmarshaller;
 import se.swedenconnect.opensaml.eidas.metadata.SchemeInformation;
 
-import javax.annotation.Nonnull;
+import jakarta.annotation.Nonnull;
 import javax.xml.namespace.QName;
 
 /**

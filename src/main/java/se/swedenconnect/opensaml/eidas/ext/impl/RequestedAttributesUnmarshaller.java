@@ -21,7 +21,7 @@ import org.opensaml.saml.common.AbstractSAMLObjectUnmarshaller;
 import se.swedenconnect.opensaml.eidas.ext.RequestedAttribute;
 import se.swedenconnect.opensaml.eidas.ext.RequestedAttributes;
 
-import javax.annotation.Nonnull;
+import jakarta.annotation.Nonnull;
 
 /**
  * A thread safe unmarshaller for {@link RequestedAttributes}.
