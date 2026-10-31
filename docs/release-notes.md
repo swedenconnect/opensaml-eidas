@@ -12,7 +12,13 @@
 
 **Date:** _not yet released_
 
--
+- `CurrentAddress` values containing `&`, `<` or `>` were not escaped when marshalled, so the attribute could not be parsed by the receiver, and a value could add extra address elements. See [#29](https://github.com/swedenconnect/opensaml-eidas/issues/29).
+
+- When unmarshalling a `CurrentAddress` value, a namespace prefix declared on an ancestor element took precedence over the same prefix declared closer to the value, which could cause the address elements to be ignored. See [#32](https://github.com/swedenconnect/opensaml-eidas/issues/32).
+
+- `parseStringValue` of a `CurrentAddress` attribute value ignored its input. It now reads the format produced by `toStringValue`. See [#34](https://github.com/swedenconnect/opensaml-eidas/issues/34).
+
+- Unmarshalling a `CurrentAddress` value in structured form logged an error even though it succeeded. See [#35](https://github.com/swedenconnect/opensaml-eidas/issues/35).
 
 ---
 
