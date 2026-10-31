@@ -62,7 +62,7 @@ public class CurrentAddressTypeUnmarshaller extends CurrentAddressStructuredType
     while (childNode != null) {
       if (childNode.getNodeType() != Node.TEXT_NODE) {
         // We skip everything except for a text node.
-        log.info("Ignoring node {} - it is not a text node", childNode.getNodeName());
+        log.debug("Ignoring node {} - it is not a text node", childNode.getNodeName());
       }
       else {
         newDocument = this.parseContents((Text) childNode, domElement);
@@ -88,7 +88,7 @@ public class CurrentAddressTypeUnmarshaller extends CurrentAddressStructuredType
 
     final String textContent = StringSupport.trimOrNull(node.getWholeText());
     if (textContent == null) {
-      log.error("Expected Base64 encoded address elements");
+      log.debug("Ignoring empty text node in {}, expected Base64 encoded address elements", domElement.getNodeName());
       return null;
     }
 
