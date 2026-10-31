@@ -12,6 +12,8 @@
 
 **Date:** _not yet released_
 
+- Setting `null` as the value of a `CountryOfBirth` or `CountryOfResidence` attribute value failed with a `NullPointerException`. See [#28](https://github.com/swedenconnect/opensaml-eidas/issues/28).
+
 - [Eidas_1_4_SecurityConfiguration](https://github.com/swedenconnect/opensaml-eidas/blob/main/src/main/java/se/swedenconnect/opensaml/eidas/xmlsec/Eidas_1_4_SecurityConfiguration.java) failed with a `StackOverflowError` when its decryption configuration was created, so the eIDAS 1.4 security profile could not be used. See [#27](https://github.com/swedenconnect/opensaml-eidas/issues/27).
 
 ---
