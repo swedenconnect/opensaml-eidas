@@ -12,7 +12,7 @@
 
 **Date:** _not yet released_
 
--
+- Received gender values such as `male` were not mapped to the constants of [GenderTypeEnumeration](https://github.com/swedenconnect/opensaml-eidas/blob/main/src/main/java/se/swedenconnect/opensaml/eidas/ext/attributes/GenderTypeEnumeration.java), so they were not equal to `GenderTypeEnumeration.MALE`. See [#30](https://github.com/swedenconnect/opensaml-eidas/issues/30).
 
 ---
 
