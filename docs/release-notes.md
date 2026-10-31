@@ -12,7 +12,7 @@
 
 **Date:** _not yet released_
 
--
+- Setting `null` as the value of a `CountryOfBirth` or `CountryOfResidence` attribute value failed with a `NullPointerException`. See [#28](https://github.com/swedenconnect/opensaml-eidas/issues/28).
 
 ---
 
