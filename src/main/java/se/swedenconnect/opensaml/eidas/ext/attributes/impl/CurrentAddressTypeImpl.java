@@ -30,6 +30,7 @@ import se.swedenconnect.opensaml.eidas.ext.attributes.address.Thoroughfare;
 
 import jakarta.annotation.Nonnull;
 import jakarta.annotation.Nullable;
+import java.net.URLDecoder;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.LinkedHashMap;
