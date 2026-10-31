@@ -54,6 +54,7 @@ public class CountryStringTypeImpl extends XSStringImpl implements CountryString
   public void setValue(@Nullable final String newValue) throws IllegalArgumentException {
     if (newValue == null) {
       super.setValue(null);
+      return;
     }
     if (!newValue.matches("[a-zA-Z]{2}")) {
       throw new IllegalArgumentException("Invalid country code: " + newValue);
