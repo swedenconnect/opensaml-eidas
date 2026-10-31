@@ -20,6 +20,10 @@
 
 - Unmarshalling a `CurrentAddress` value in structured form logged an error even though it succeeded. See [#35](https://github.com/swedenconnect/opensaml-eidas/issues/35).
 
+- Setting `null` as the value of a `CountryOfBirth` or `CountryOfResidence` attribute value failed with a `NullPointerException`. See [#28](https://github.com/swedenconnect/opensaml-eidas/issues/28).
+
+- [Eidas_1_4_SecurityConfiguration](https://github.com/swedenconnect/opensaml-eidas/blob/main/src/main/java/se/swedenconnect/opensaml/eidas/xmlsec/Eidas_1_4_SecurityConfiguration.java) failed with a `StackOverflowError` when its decryption configuration was created, so the eIDAS 1.4 security profile could not be used. See [#27](https://github.com/swedenconnect/opensaml-eidas/issues/27).
+
 ---
 
 Copyright &copy; 2016-2026, [Sweden Connect](https://swedenconnect.se). Licensed under version 2.0 of the [Apache License](http://www.apache.org/licenses/LICENSE-2.0).

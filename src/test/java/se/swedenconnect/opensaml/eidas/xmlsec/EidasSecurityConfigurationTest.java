@@ -67,7 +67,11 @@ import se.swedenconnect.opensaml.eidas.OpenSAMLTestBase;
 public class EidasSecurityConfigurationTest {
 
   /**
-   * Initializes the OpenSAML library.
+   * Initializes the OpenSAML library and installs the eIDAS security configuration.
+   * <p>
+   * OpenSAML is only initialized once per JVM, so if another test class has already initialized it, the eIDAS
+   * configuration is installed explicitly.
+   * </p>
    *
    * @throws Exception for init errors
    */
@@ -78,6 +82,7 @@ public class EidasSecurityConfigurationTest {
         .initialize(
             new OpenSAMLSecurityDefaultsConfig(new EidasSecurityConfiguration()),
             new OpenSAMLSecurityExtensionConfig());
+    new EidasSecurityConfiguration().initOpenSAML();
   }
 
   /**
