@@ -136,6 +136,43 @@ public class CurrentAddressTypeTest extends OpenSAMLTestBase {
   }
 
   /**
+   * Tests that {@code parseStringValue} reads the format produced by {@code toStringValue}.
+   *
+   * @throws Exception for errors
+   */
+  @Test
+  public void testParseStringValue() throws Exception {
+    final CurrentAddressType address = AttributeUtils.createAttributeValueObject(CurrentAddressType.class);
+    fill(address);
+
+    final CurrentAddressType address2 = AttributeUtils.createAttributeValueObject(CurrentAddressType.class);
+    address2.setPoBox("123");
+    address2.parseStringValue(address.toStringValue());
+
+    verify(address, address2);
+    Assertions.assertNull(address2.getPoBox());
+    Assertions.assertEquals(address.toStringValue(), address2.toStringValue());
+  }
+
+  /**
+   * Tests that {@code parseStringValue} rejects bad input and leaves the object unchanged.
+   *
+   * @throws Exception for errors
+   */
+  @Test
+  public void testParseStringValueBadInput() throws Exception {
+    final CurrentAddressType address = AttributeUtils.createAttributeValueObject(CurrentAddressType.class);
+    address.setPostCode("12345");
+
+    Assertions.assertThrows(IllegalArgumentException.class,
+        () -> address.parseStringValue("PostName=Solna;Unknown=1"));
+    Assertions.assertThrows(IllegalArgumentException.class,
+        () -> address.parseStringValue("PostName"));
+    Assertions.assertEquals("12345", address.getPostCode());
+    Assertions.assertNull(address.getPostName());
+  }
+
+  /**
    * Tests that values containing XML special characters are escaped when marshalled.
    *
    * @throws Exception for errors
