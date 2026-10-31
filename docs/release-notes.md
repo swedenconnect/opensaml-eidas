@@ -12,7 +12,7 @@
 
 **Date:** _not yet released_
 
--
+- Changing the type of an `SPType` element that had already been marshalled had no effect when it was marshalled again. See [#31](https://github.com/swedenconnect/opensaml-eidas/issues/31).
 
 ---
 
