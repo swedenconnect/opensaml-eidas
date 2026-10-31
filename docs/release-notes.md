@@ -12,6 +12,8 @@
 
 **Date:** _not yet released_
 
+- The identifier part of a `PersonIdentifier` value was cut off at the first `/` character. See [#33](https://github.com/swedenconnect/opensaml-eidas/issues/33).
+
 - Changing the type of an `SPType` element that had already been marshalled had no effect when it was marshalled again. See [#31](https://github.com/swedenconnect/opensaml-eidas/issues/31).
 
 - Received gender values such as `male` were not mapped to the constants of [GenderTypeEnumeration](https://github.com/swedenconnect/opensaml-eidas/blob/main/src/main/java/se/swedenconnect/opensaml/eidas/ext/attributes/GenderTypeEnumeration.java), so they were not equal to `GenderTypeEnumeration.MALE`. See [#30](https://github.com/swedenconnect/opensaml-eidas/issues/30).
