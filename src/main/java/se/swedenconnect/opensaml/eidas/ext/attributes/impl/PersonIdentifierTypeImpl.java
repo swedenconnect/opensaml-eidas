@@ -71,7 +71,7 @@ public class PersonIdentifierTypeImpl extends XSStringImpl implements PersonIden
     if (value == null) {
       return null;
     }
-    final String[] parts = value.split("/");
+    final String[] parts = value.split("/", 3);
     return parts.length >= pos + 1 ? parts[pos] : null;
   }
 
