@@ -12,7 +12,23 @@
 
 **Date:** _not yet released_
 
--
+- [Eidas_1_4_SecurityConfiguration](https://github.com/swedenconnect/opensaml-eidas/blob/main/src/main/java/se/swedenconnect/opensaml/eidas/xmlsec/Eidas_1_4_SecurityConfiguration.java) failed with a `StackOverflowError` when its decryption configuration was created, so the eIDAS 1.4 security profile could not be used. See [#27](https://github.com/swedenconnect/opensaml-eidas/issues/27).
+
+- Setting `null` as the value of a `CountryOfBirth` or `CountryOfResidence` attribute value failed with a `NullPointerException`. See [#28](https://github.com/swedenconnect/opensaml-eidas/issues/28).
+
+- `CurrentAddress` values containing `&`, `<` or `>` were not escaped when marshalled, so the attribute could not be parsed by the receiver, and a value could add extra address elements. See [#29](https://github.com/swedenconnect/opensaml-eidas/issues/29).
+
+- Received gender values such as `male` were not mapped to the constants of [GenderTypeEnumeration](https://github.com/swedenconnect/opensaml-eidas/blob/main/src/main/java/se/swedenconnect/opensaml/eidas/ext/attributes/GenderTypeEnumeration.java), so they were not equal to `GenderTypeEnumeration.MALE`. See [#30](https://github.com/swedenconnect/opensaml-eidas/issues/30).
+
+- Changing the type of an `SPType` element that had already been marshalled had no effect when it was marshalled again. See [#31](https://github.com/swedenconnect/opensaml-eidas/issues/31).
+
+- When unmarshalling a `CurrentAddress` value, a namespace prefix declared on an ancestor element took precedence over the same prefix declared closer to the value, which could cause the address elements to be ignored. See [#32](https://github.com/swedenconnect/opensaml-eidas/issues/32).
+
+- The identifier part of a `PersonIdentifier` value was cut off at the first `/` character. See [#33](https://github.com/swedenconnect/opensaml-eidas/issues/33).
+
+- `parseStringValue` of a `CurrentAddress` attribute value ignored its input. It now reads the format produced by `toStringValue`. See [#34](https://github.com/swedenconnect/opensaml-eidas/issues/34).
+
+- Unmarshalling a `CurrentAddress` value in structured form logged an error even though it succeeded. See [#35](https://github.com/swedenconnect/opensaml-eidas/issues/35).
 
 ---
 
