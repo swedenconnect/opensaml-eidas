@@ -53,7 +53,7 @@ public class SPTypeImpl extends AbstractXMLObject implements SPType {
   /** {@inheritDoc} */
   @Override
   public void setType(final SPTypeEnumeration type) {
-    this.type = type;
+    this.type = this.prepareForAssignment(this.type, type);
   }
 
   /** {@inheritDoc} */
