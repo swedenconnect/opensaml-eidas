@@ -135,6 +135,26 @@ public class CurrentAddressTypeTest extends OpenSAMLTestBase {
   }
 
   /**
+   * Tests that values containing XML special characters are escaped when marshalled.
+   *
+   * @throws Exception for errors
+   */
+  @Test
+  public void testMarshallAndUnmarshallSpecialCharacters() throws Exception {
+    final CurrentAddressType address = AttributeUtils.createAttributeValueObject(CurrentAddressType.class);
+    address.setThoroughfare("Smith & Sons <Road>");
+    address.setPostName("<eidas:PostCode>12345</eidas:PostCode>");
+
+    final Element element = XMLObjectSupport.marshall(address);
+    final CurrentAddressType address2 =
+        (CurrentAddressType) XMLObjectSupport.getUnmarshaller(element).unmarshall(element);
+
+    Assertions.assertEquals("Smith & Sons <Road>", address2.getThoroughfare());
+    Assertions.assertEquals("<eidas:PostCode>12345</eidas:PostCode>", address2.getPostName());
+    Assertions.assertNull(address2.getPostCode());
+  }
+
+  /**
    * Test unmarshalling an attribute holding a CurrentAddress type. Example is from eIDAS specs.
    * <p>
    * The example contains the Base64-encoding of the following XML-snippet:
