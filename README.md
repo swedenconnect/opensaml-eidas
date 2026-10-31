@@ -42,6 +42,8 @@ The eidas-opensaml artifacts are published to Maven central and a dependency to 
 
 * API documentation - [https://docs.swedenconnect.se/opensaml-eidas/apidocs/](https://docs.swedenconnect.se/opensaml-eidas/apidocs/).
 
+* [Release notes](https://docs.swedenconnect.se/opensaml-eidas/release-notes.html)
+
 ### Examples
 
 #### Creating an eIDAS AuthnRequest message

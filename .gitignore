@@ -28,3 +28,6 @@ test-output
 hs_err_pid*
 /target/
 docs/.DS_Store
+
+.claude/
+.idea/
