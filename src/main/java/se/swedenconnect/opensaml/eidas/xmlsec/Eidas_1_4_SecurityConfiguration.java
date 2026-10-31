@@ -72,7 +72,7 @@ public class Eidas_1_4_SecurityConfiguration extends EidasSecurityConfiguration 
   protected DecryptionConfiguration createDefaultDecryptionConfiguration() {
 
     final BasicDecryptionConfiguration config =
-        (BasicDecryptionConfiguration) super.getDecryptionConfiguration();
+        (BasicDecryptionConfiguration) super.createDefaultDecryptionConfiguration();
 
     config.setIncludedAlgorithms(config.getIncludedAlgorithms().stream()
         .filter(a -> !EncryptionConstants.ALGO_ID_KEYTRANSPORT_RSAOAEP.equals(a))

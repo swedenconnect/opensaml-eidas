@@ -67,6 +67,22 @@ public class SPTypeTest extends OpenSAMLTestBase {
   }
 
   /**
+   * Tests that a changed value is included when the object is marshalled again.
+   *
+   * @throws Exception for errors
+   */
+  @Test
+  public void testMarshallAfterChange() throws Exception {
+    final SPType type = (SPType) XMLObjectSupport.buildXMLObject(SPType.DEFAULT_ELEMENT_NAME);
+    type.setType(SPTypeEnumeration.PUBLIC);
+    XMLObjectSupport.marshall(type);
+
+    type.setType(SPTypeEnumeration.PRIVATE);
+    final Element element = XMLObjectSupport.marshall(type);
+    Assertions.assertEquals("private", element.getTextContent());
+  }
+
+  /**
    * Test unmarshalling into an SPType.
    *
    * @throws Exception for errors
