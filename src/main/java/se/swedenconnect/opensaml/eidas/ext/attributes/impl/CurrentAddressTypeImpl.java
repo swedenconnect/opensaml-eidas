@@ -18,13 +18,25 @@ package se.swedenconnect.opensaml.eidas.ext.attributes.impl;
 import org.opensaml.core.xml.XMLObject;
 import org.opensaml.core.xml.schema.XSString;
 import se.swedenconnect.opensaml.eidas.ext.attributes.CurrentAddressType;
+import se.swedenconnect.opensaml.eidas.ext.attributes.address.AdminunitFirstline;
+import se.swedenconnect.opensaml.eidas.ext.attributes.address.AdminunitSecondline;
+import se.swedenconnect.opensaml.eidas.ext.attributes.address.CvaddressArea;
+import se.swedenconnect.opensaml.eidas.ext.attributes.address.LocatorDesignator;
+import se.swedenconnect.opensaml.eidas.ext.attributes.address.LocatorName;
+import se.swedenconnect.opensaml.eidas.ext.attributes.address.PoBox;
+import se.swedenconnect.opensaml.eidas.ext.attributes.address.PostCode;
+import se.swedenconnect.opensaml.eidas.ext.attributes.address.PostName;
+import se.swedenconnect.opensaml.eidas.ext.attributes.address.Thoroughfare;
 
 import jakarta.annotation.Nonnull;
 import jakarta.annotation.Nullable;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
+import java.util.function.Consumer;
 
 /**
  * Implementation of {@code CurrentAddressType}.
@@ -76,10 +88,45 @@ public class CurrentAddressTypeImpl extends CurrentAddressStructuredTypeImpl imp
     return this.toSwedishEidString();
   }
 
+  /**
+   * Parses a string in the format produced by {@link #toSwedishEidString()}, for example
+   * {@code "LocatorDesignator=22;Thoroughfare=Arcacia%20Avenue;PostName=London"}. All current address elements are
+   * replaced by the parsed ones.
+   */
   @Override
   public void parseStringValue(@Nonnull final String value) throws IllegalArgumentException, NullPointerException {
     Objects.requireNonNull(value, "value must not be null");
-    // Not supported
+
+    final Map<String, Consumer<String>> setters = Map.of(
+        PoBox.DEFAULT_ELEMENT_LOCAL_NAME, this::setPoBox,
+        LocatorDesignator.DEFAULT_ELEMENT_LOCAL_NAME, this::setLocatorDesignator,
+        LocatorName.DEFAULT_ELEMENT_LOCAL_NAME, this::setLocatorName,
+        CvaddressArea.DEFAULT_ELEMENT_LOCAL_NAME, this::setCvaddressArea,
+        Thoroughfare.DEFAULT_ELEMENT_LOCAL_NAME, this::setThoroughfare,
+        PostName.DEFAULT_ELEMENT_LOCAL_NAME, this::setPostName,
+        AdminunitFirstline.DEFAULT_ELEMENT_LOCAL_NAME, this::setAdminunitFirstline,
+        AdminunitSecondline.DEFAULT_ELEMENT_LOCAL_NAME, this::setAdminunitSecondline,
+        PostCode.DEFAULT_ELEMENT_LOCAL_NAME, this::setPostCode);
+
+    // Parse everything before changing anything, so that a bad value leaves the object as it was.
+    final Map<String, String> parsed = new LinkedHashMap<>();
+    for (final String pair : value.split(";")) {
+      if (pair.isBlank()) {
+        continue;
+      }
+      final int pos = pair.indexOf('=');
+      if (pos <= 0) {
+        throw new IllegalArgumentException("Invalid address element: " + pair);
+      }
+      final String name = pair.substring(0, pos).trim();
+      if (!setters.containsKey(name)) {
+        throw new IllegalArgumentException("Unknown address element: " + name);
+      }
+      parsed.put(name, URLDecoder.decode(pair.substring(pos + 1), StandardCharsets.UTF_8));
+    }
+
+    setters.values().forEach(s -> s.accept(null));
+    parsed.forEach((name, v) -> setters.get(name).accept(v));
   }
 
 }

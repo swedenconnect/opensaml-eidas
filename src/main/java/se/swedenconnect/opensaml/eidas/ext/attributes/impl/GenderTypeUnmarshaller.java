@@ -30,11 +30,16 @@ import jakarta.annotation.Nonnull;
  */
 public class GenderTypeUnmarshaller extends AbstractXMLObjectUnmarshaller {
 
-  /** {@inheritDoc} */
+  /**
+   * Known gender values are mapped to the {@link GenderTypeEnumeration} constants (case insensitive). Other values are
+   * kept as they are.
+   */
   @Override
   protected void processElementContent(@Nonnull final XMLObject xmlObject, @Nonnull final String elementContent) {
     final GenderType gender = (GenderType) xmlObject;
-    gender.setGender(new GenderTypeEnumeration(elementContent));
+    final String value = elementContent.trim();
+    final GenderTypeEnumeration known = GenderTypeEnumeration.fromValue(value);
+    gender.setGender(known != null ? known : new GenderTypeEnumeration(value));
   }
 
 }

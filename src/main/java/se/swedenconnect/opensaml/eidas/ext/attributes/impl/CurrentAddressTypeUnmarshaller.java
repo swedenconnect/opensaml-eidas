@@ -62,7 +62,7 @@ public class CurrentAddressTypeUnmarshaller extends CurrentAddressStructuredType
     while (childNode != null) {
       if (childNode.getNodeType() != Node.TEXT_NODE) {
         // We skip everything except for a text node.
-        log.info("Ignoring node {} - it is not a text node", childNode.getNodeName());
+        log.debug("Ignoring node {} - it is not a text node", childNode.getNodeName());
       }
       else {
         newDocument = this.parseContents((Text) childNode, domElement);
@@ -88,7 +88,7 @@ public class CurrentAddressTypeUnmarshaller extends CurrentAddressStructuredType
 
     final String textContent = StringSupport.trimOrNull(node.getWholeText());
     if (textContent == null) {
-      log.error("Expected Base64 encoded address elements");
+      log.debug("Ignoring empty text node in {}, expected Base64 encoded address elements", domElement.getNodeName());
       return null;
     }
 
@@ -171,7 +171,8 @@ public class CurrentAddressTypeUnmarshaller extends CurrentAddressStructuredType
   }
 
   /**
-   * Helper method to {@link #getNamespaceBindings(Element)}
+   * Helper method to {@link #getNamespaceBindings(Element)}. A declaration closer to the element has precedence over
+   * a declaration of the same prefix on an ancestor.
    *
    * @param element the element to parse
    * @param namespaceMap the map to fill
@@ -186,7 +187,7 @@ public class CurrentAddressTypeUnmarshaller extends CurrentAddressStructuredType
       final String name = node.getNodeName();
       if ((name != null
           && (XMLConstants.XMLNS_PREFIX.equals(name) || name.startsWith(XMLConstants.XMLNS_PREFIX + ":")))) {
-        namespaceMap.put(name, node.getNodeValue());
+        namespaceMap.putIfAbsent(name, node.getNodeValue());
       }
     }
     final Node parent = element.getParentNode();

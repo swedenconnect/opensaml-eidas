@@ -16,6 +16,7 @@
 package se.swedenconnect.opensaml.eidas.ext.attributes;
 
 import java.io.ByteArrayInputStream;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 
 import javax.xml.namespace.QName;
@@ -135,6 +136,63 @@ public class CurrentAddressTypeTest extends OpenSAMLTestBase {
   }
 
   /**
+   * Tests that {@code parseStringValue} reads the format produced by {@code toStringValue}.
+   *
+   * @throws Exception for errors
+   */
+  @Test
+  public void testParseStringValue() throws Exception {
+    final CurrentAddressType address = AttributeUtils.createAttributeValueObject(CurrentAddressType.class);
+    fill(address);
+
+    final CurrentAddressType address2 = AttributeUtils.createAttributeValueObject(CurrentAddressType.class);
+    address2.setPoBox("123");
+    address2.parseStringValue(address.toStringValue());
+
+    verify(address, address2);
+    Assertions.assertNull(address2.getPoBox());
+    Assertions.assertEquals(address.toStringValue(), address2.toStringValue());
+  }
+
+  /**
+   * Tests that {@code parseStringValue} rejects bad input and leaves the object unchanged.
+   *
+   * @throws Exception for errors
+   */
+  @Test
+  public void testParseStringValueBadInput() throws Exception {
+    final CurrentAddressType address = AttributeUtils.createAttributeValueObject(CurrentAddressType.class);
+    address.setPostCode("12345");
+
+    Assertions.assertThrows(IllegalArgumentException.class,
+        () -> address.parseStringValue("PostName=Solna;Unknown=1"));
+    Assertions.assertThrows(IllegalArgumentException.class,
+        () -> address.parseStringValue("PostName"));
+    Assertions.assertEquals("12345", address.getPostCode());
+    Assertions.assertNull(address.getPostName());
+  }
+
+  /**
+   * Tests that values containing XML special characters are escaped when marshalled.
+   *
+   * @throws Exception for errors
+   */
+  @Test
+  public void testMarshallAndUnmarshallSpecialCharacters() throws Exception {
+    final CurrentAddressType address = AttributeUtils.createAttributeValueObject(CurrentAddressType.class);
+    address.setThoroughfare("Smith & Sons <Road>");
+    address.setPostName("<eidas:PostCode>12345</eidas:PostCode>");
+
+    final Element element = XMLObjectSupport.marshall(address);
+    final CurrentAddressType address2 =
+        (CurrentAddressType) XMLObjectSupport.getUnmarshaller(element).unmarshall(element);
+
+    Assertions.assertEquals("Smith & Sons <Road>", address2.getThoroughfare());
+    Assertions.assertEquals("<eidas:PostCode>12345</eidas:PostCode>", address2.getPostName());
+    Assertions.assertNull(address2.getPostCode());
+  }
+
+  /**
    * Test unmarshalling an attribute holding a CurrentAddress type. Example is from eIDAS specs.
    * <p>
    * The example contains the Base64-encoding of the following XML-snippet:
@@ -216,6 +274,32 @@ public class CurrentAddressTypeTest extends OpenSAMLTestBase {
     Assertions.assertEquals("Arnoltice u Děčína", address.getPostName());
     Assertions.assertEquals("40714", address.getPostCode());
     Assertions.assertEquals("Arnoltice", address.getCvaddressArea());
+  }
+
+  /**
+   * Tests that a namespace prefix declared on the attribute value has precedence over the same prefix declared on an
+   * ancestor element.
+   *
+   * @throws Exception for errors
+   */
+  @Test
+  public void testUnmarshallRedeclaredPrefix() throws Exception {
+    final String base64 = Base64Support.encode(
+        "<x:PostCode>12345</x:PostCode>".getBytes(StandardCharsets.UTF_8), false);
+    final String xml =
+        "<saml:Attribute xmlns:saml=\"urn:oasis:names:tc:SAML:2.0:assertion\" xmlns:x=\"http://www.example.com/other\""
+            + " Name=\"http://eidas.europa.eu/attributes/naturalperson/CurrentAddress\">"
+            + "<saml:AttributeValue xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\""
+            + " xmlns:x=\"http://eidas.europa.eu/attributes/naturalperson\" xsi:type=\"x:CurrentAddressType\">"
+            + base64 + "</saml:AttributeValue></saml:Attribute>";
+
+    final Document doc = XMLObjectProviderRegistrySupport.getParserPool()
+        .parse(new ByteArrayInputStream(xml.getBytes(StandardCharsets.UTF_8)));
+    final Attribute attribute = (Attribute) XMLObjectSupport.getUnmarshaller(Attribute.DEFAULT_ELEMENT_NAME)
+        .unmarshall(doc.getDocumentElement());
+
+    final CurrentAddressType address = (CurrentAddressType) attribute.getAttributeValues().get(0);
+    Assertions.assertEquals("12345", address.getPostCode());
   }
 
   /**

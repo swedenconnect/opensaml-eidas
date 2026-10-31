@@ -52,6 +52,14 @@ public class CountryStringTypeTest extends OpenSAMLTestBase {
   }
 
   @Test
+  void testSetNull() throws Exception {
+    final CountryOfBirthType n = (CountryOfBirthType) XMLObjectSupport.buildXMLObject(CountryOfBirthType.TYPE_NAME);
+    n.setValue("SE");
+    n.setValue(null);
+    Assertions.assertNull(n.getValue());
+  }
+
+  @Test
   void testToUpperCase() throws Exception {
 
     final NationalityType n = (NationalityType) XMLObjectSupport.buildXMLObject(NationalityType.TYPE_NAME);

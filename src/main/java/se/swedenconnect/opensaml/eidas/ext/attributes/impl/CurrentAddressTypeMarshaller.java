@@ -90,7 +90,8 @@ public class CurrentAddressTypeMarshaller extends AbstractXMLObjectMarshaller {
           continue;
         }
         final String localPart = childString.getElementQName().getLocalPart();
-        sb.append(String.format("<%s:%s>%s</%s:%s>", prefix, localPart, childString.getValue(), prefix, localPart));
+        sb.append(String.format("<%s:%s>%s</%s:%s>",
+            prefix, localPart, escapeXml(childString.getValue()), prefix, localPart));
       }
     }
     if (!sb.isEmpty()) {
@@ -103,6 +104,16 @@ public class CurrentAddressTypeMarshaller extends AbstractXMLObjectMarshaller {
         throw new MarshallingException(e);
       }
     }
+  }
+
+  /**
+   * Escapes the characters that may not appear as they are in XML element content.
+   *
+   * @param value the value to escape
+   * @return the escaped value
+   */
+  private static String escapeXml(final String value) {
+    return value.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;");
   }
 
 }

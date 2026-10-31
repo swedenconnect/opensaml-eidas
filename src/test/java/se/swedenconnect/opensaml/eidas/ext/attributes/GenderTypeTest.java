@@ -49,4 +49,34 @@ public class GenderTypeTest extends OpenSAMLTestBase {
     Assertions.assertEquals(gender.getGender(), gender2.getGender());
   }
 
+  /**
+   * Tests that received values are mapped to the enumeration constants regardless of case and whitespace.
+   *
+   * @throws Exception for errors
+   */
+  @Test
+  public void testUnmarshallNormalized() throws Exception {
+    final GenderType gender = (GenderType) XMLObjectSupport.buildXMLObject(GenderType.TYPE_NAME);
+    gender.setGender(new GenderTypeEnumeration(" female "));
+    final Element xml = XMLObjectSupport.marshall(gender);
+
+    final GenderType gender2 = (GenderType) XMLObjectSupport.getUnmarshaller(GenderType.TYPE_NAME).unmarshall(xml);
+    Assertions.assertSame(GenderTypeEnumeration.FEMALE, gender2.getGender());
+  }
+
+  /**
+   * Tests that unknown values are kept as they are.
+   *
+   * @throws Exception for errors
+   */
+  @Test
+  public void testUnmarshallUnknown() throws Exception {
+    final GenderType gender = (GenderType) XMLObjectSupport.buildXMLObject(GenderType.TYPE_NAME);
+    gender.setGender(new GenderTypeEnumeration("Other"));
+    final Element xml = XMLObjectSupport.marshall(gender);
+
+    final GenderType gender2 = (GenderType) XMLObjectSupport.getUnmarshaller(GenderType.TYPE_NAME).unmarshall(xml);
+    Assertions.assertEquals("Other", gender2.getGender().getValue());
+  }
+
 }
