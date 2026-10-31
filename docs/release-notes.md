@@ -12,6 +12,8 @@
 
 **Date:** _not yet released_
 
+- Received gender values such as `male` were not mapped to the constants of [GenderTypeEnumeration](https://github.com/swedenconnect/opensaml-eidas/blob/main/src/main/java/se/swedenconnect/opensaml/eidas/ext/attributes/GenderTypeEnumeration.java), so they were not equal to `GenderTypeEnumeration.MALE`. See [#30](https://github.com/swedenconnect/opensaml-eidas/issues/30).
+
 - `CurrentAddress` values containing `&`, `<` or `>` were not escaped when marshalled, so the attribute could not be parsed by the receiver, and a value could add extra address elements. See [#29](https://github.com/swedenconnect/opensaml-eidas/issues/29).
 
 - When unmarshalling a `CurrentAddress` value, a namespace prefix declared on an ancestor element took precedence over the same prefix declared closer to the value, which could cause the address elements to be ignored. See [#32](https://github.com/swedenconnect/opensaml-eidas/issues/32).
