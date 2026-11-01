@@ -8,9 +8,15 @@
 
 ## Release Notes
 
-### 3.3.3
+### 3.3.4
 
 **Date:** _not yet released_
+
+- 
+
+### 3.3.3
+
+**Date:** 2026-11-01
 
 - The identifier part of a `PersonIdentifier` value was cut off at the first `/` character. See [#33](https://github.com/swedenconnect/opensaml-eidas/issues/33).
 
