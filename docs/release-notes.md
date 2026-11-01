@@ -10,7 +10,7 @@
 
 ### 3.3.3
 
-**Date:** _not yet released_
+**Date:** 2026-11-01
 
 - The identifier part of a `PersonIdentifier` value was cut off at the first `/` character. See [#33](https://github.com/swedenconnect/opensaml-eidas/issues/33).
 
